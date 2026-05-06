@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduCare School - Quality Education for All</title>
     
-    <!-- GSAP Library CDN -->
+    <!-- GSAP Library CDN with advanced plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     
     <!-- Internal CSS Styling -->
     <style>
@@ -28,7 +30,7 @@
             line-height: 1.6;
             color: #333;
             cursor: none;
-            background: #000;
+            background: #0a0a0a;
         }
 
         /* ===== ANIMATED BACKGROUND WITH DIVERGING COLORS ===== */
@@ -46,7 +48,7 @@
             position: absolute;
             height: 100%;
             top: 0;
-            opacity: 0.9;
+            opacity: 0.95;
             mix-blend-mode: screen;
         }
 
@@ -60,15 +62,6 @@
         .column-7 { left: 75%; width: 12.5%; background: linear-gradient(180deg, #0099ff 0%, #6600ff 50%, #9933ff 100%); }
         .column-8 { left: 87.5%; width: 12.5%; background: linear-gradient(180deg, #9933ff 0%, #cc00ff 50%, #ff0099 100%); }
 
-        .column-1.shift { transform: translateY(-100px); }
-        .column-2.shift { transform: translateY(-80px); }
-        .column-3.shift { transform: translateY(-60px); }
-        .column-4.shift { transform: translateY(-40px); }
-        .column-5.shift { transform: translateY(40px); }
-        .column-6.shift { transform: translateY(60px); }
-        .column-7.shift { transform: translateY(80px); }
-        .column-8.shift { transform: translateY(100px); }
-
         /* ===== GLASS OVERLAY ===== */
         .glass-overlay {
             position: fixed;
@@ -76,42 +69,37 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
             z-index: 0;
         }
 
-        /* ===== ANIMATED CURSOR ===== */
+        /* ===== ADVANCED LIQUID CURSOR ===== */
         .cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
+            width: 24px;
+            height: 24px;
             pointer-events: none;
             z-index: 9999;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            filter: invert(100%) contrast(120%) brightness(1.2);
+            mix-blend-mode: screen;
         }
 
-        .cursor.active {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 100%);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.4);
+        .cursor svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
         }
 
         /* Cursor trail effect */
         .cursor-trail {
             position: fixed;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
-            border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
+            border-radius: 50%;
+            mix-blend-mode: overlay;
+            filter: invert(100%) contrast(100%) brightness(1.1);
         }
 
         /* ===== CONTENT WRAPPER ===== */
@@ -123,16 +111,23 @@
 
         /* ===== Header and Navigation ===== */
         header {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             color: white;
             padding: 1.5rem 0;
             position: sticky;
             top: 0;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff) 1;
+            animation: borderGradient 8s ease-in-out infinite;
+        }
+
+        @keyframes borderGradient {
+            0%, 100% { border-image: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff) 1; }
+            50% { border-image: linear-gradient(90deg, #cc00ff, #0099ff, #00ff00, #ffd60a, #ff6b35) 1; }
         }
 
         .header-container {
@@ -159,7 +154,7 @@
         }
 
         .school-name:hover {
-            text-shadow: 0 4px 30px rgba(255, 255, 255, 0.5);
+            filter: drop-shadow(0 0 15px rgba(204, 0, 255, 0.6));
         }
 
         /* ===== Navigation Menu ===== */
@@ -201,17 +196,42 @@
             padding: 2rem;
         }
 
-        /* ===== Sections with Glass Effect ===== */
+        /* ===== Liquid Glass Sections ===== */
         section {
             margin: 2rem 0;
             padding: 2.5rem;
-            border-radius: 20px;
+            border-radius: 25px;
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(204, 0, 255, 0.5)) 1;
+            box-shadow: 
+                0 8px 32px 0 rgba(31, 38, 135, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
             color: #333;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            z-index: 1;
+        }
+
+        section:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 15px 45px 0 rgba(204, 0, 255, 0.25),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
         }
 
         section h2 {
@@ -219,15 +239,25 @@
             margin-bottom: 1.5rem;
             font-size: 2.2rem;
             border-bottom: 3px solid;
-            border-image: linear-gradient(90deg, #ff6b35, #cc00ff) 1;
-            padding-bottom: 0.5rem;
+            border-image: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff) 1;
+            padding-bottom: 0.8rem;
             display: inline-block;
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             font-weight: 700;
+            animation: headingGradient 6s ease-in-out infinite;
+        }
+
+        @keyframes headingGradient {
+            0%, 100% { 
+                border-image: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff) 1;
+            }
+            50% { 
+                border-image: linear-gradient(90deg, #cc00ff, #0099ff, #00ff00, #ffd60a, #ff6b35) 1;
+            }
         }
 
         section p {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
@@ -289,7 +319,7 @@
             position: relative;
         }
 
-        /* ===== Welcome Button ===== */
+        /* ===== Interactive Liquid Buttons ===== */
         .welcome-btn {
             background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(204, 0, 255, 0.3));
             color: white;
@@ -306,15 +336,36 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             z-index: 2;
             position: relative;
-            box-shadow: 0 4px 20px rgba(204, 0, 255, 0.2);
+            box-shadow: 
+                0 4px 20px rgba(204, 0, 255, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .welcome-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        .welcome-btn:hover::before {
+            transform: scale(1);
         }
 
         .welcome-btn:hover {
             background: linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(204, 0, 255, 0.5));
             border: 2px solid rgba(255, 255, 255, 0.8);
             transform: scale(1.08);
-            box-shadow: 0 8px 30px rgba(204, 0, 255, 0.4);
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 8px 30px rgba(204, 0, 255, 0.4),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
         }
 
         /* ===== About Section ===== */
@@ -347,8 +398,18 @@
             color: white;
             font-size: 3.5rem;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: inset 0 4px 20px rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 25px rgba(31, 38, 135, 0.15),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .about-image:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(204, 0, 255, 0.3));
+            box-shadow: 
+                0 15px 40px rgba(204, 0, 255, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
         }
 
         /* ===== Courses Section ===== */
@@ -368,9 +429,11 @@
             color: white;
             padding: 2rem;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -396,12 +459,14 @@
         .course-card:hover {
             transform: translateY(-15px);
             background: linear-gradient(135deg, rgba(255, 107, 53, 0.25), rgba(204, 0, 255, 0.25));
-            box-shadow: 0 8px 35px rgba(204, 0, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 15px 40px rgba(204, 0, 255, 0.25),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
         }
 
         .course-card:hover::before {
-            opacity: 0.1;
+            opacity: 0.15;
         }
 
         .course-card h3 {
@@ -465,9 +530,12 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.7);
+            border: 2px solid;
+            border-image: linear-gradient(90deg, #ff6b35, #cc00ff) 1;
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(204, 0, 255, 0.2);
+            box-shadow: 
+                0 0 20px rgba(204, 0, 255, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
         }
 
         .form-group textarea {
@@ -490,14 +558,37 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 20px rgba(204, 0, 255, 0.2);
+            box-shadow: 
+                0 4px 20px rgba(204, 0, 255, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        .submit-btn:hover::before {
+            transform: scale(1);
         }
 
         .submit-btn:hover {
             background: linear-gradient(135deg, rgba(255, 107, 53, 0.6), rgba(204, 0, 255, 0.6));
             border: 2px solid rgba(255, 255, 255, 0.8);
             transform: scale(1.03);
-            box-shadow: 0 8px 30px rgba(204, 0, 255, 0.4);
+            box-shadow: 
+                0 8px 30px rgba(204, 0, 255, 0.4),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
         }
 
         /* ===== Error Message ===== */
@@ -510,7 +601,7 @@
 
         .form-group.error input,
         .form-group.error textarea {
-            border-color: #ff6b9d;
+            border: 2px solid #ff6b9d;
             background: rgba(255, 107, 157, 0.1);
         }
 
@@ -518,7 +609,8 @@
         .contact-info {
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, rgba(255, 107, 53, 0.5), rgba(204, 0, 255, 0.5)) 1;
             z-index: 2;
             position: relative;
         }
@@ -545,7 +637,8 @@
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, #ff6b35, #cc00ff) 1;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
@@ -647,7 +740,7 @@
     <!-- ===== GLASS OVERLAY ===== -->
     <div class="glass-overlay"></div>
 
-    <!-- ===== ANIMATED CURSOR ===== -->
+    <!-- ===== LIQUID CURSOR ===== -->
     <div class="cursor" id="cursor"></div>
 
     <!-- ===== CONTENT WRAPPER ===== -->
@@ -820,8 +913,9 @@
 
     <!-- Internal JavaScript with GSAP -->
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
         /* ===== NETFLIX-STYLE DIVERGING COLOR ANIMATION ===== */
-        // Animate the color columns to diverge like Netflix intro
         const columns = document.querySelectorAll('.color-column');
         
         function animateBackgroundDivergence() {
@@ -836,48 +930,118 @@
             });
         }
 
-        // Start animation on load
         window.addEventListener('load', animateBackgroundDivergence);
 
-        /* ===== GSAP ANIMATED CURSOR ===== */
+        /* ===== ADVANCED LIQUID CURSOR WITH WATER DROP EFFECT ===== */
         const cursor = document.getElementById('cursor');
         let mouseX = 0;
         let mouseY = 0;
         let cursorX = 0;
         let cursorY = 0;
+        let velocityX = 0;
+        let velocityY = 0;
+        let lastX = 0;
+        let lastY = 0;
 
-        // Track mouse position
+        // Create liquid cursor shape
+        function createLiquidCursor() {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 50 50');
+            svg.setAttribute('width', '50');
+            svg.setAttribute('height', '50');
+
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+            filter.setAttribute('id', 'gooey');
+            filter.setAttribute('x', '-50%');
+            filter.setAttribute('y', '-50%');
+            filter.setAttribute('width', '200%');
+            filter.setAttribute('height', '200%');
+            
+            const feGaussianBlur = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+            feGaussianBlur.setAttribute('in', 'SourceGraphic');
+            feGaussianBlur.setAttribute('stdDeviation', '3');
+            
+            const feColorMatrix = document.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
+            feColorMatrix.setAttribute('type', 'saturate');
+            feColorMatrix.setAttribute('values', '1.5');
+            
+            filter.appendChild(feGaussianBlur);
+            filter.appendChild(feColorMatrix);
+            defs.appendChild(filter);
+            svg.appendChild(defs);
+
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', '25');
+            circle.setAttribute('cy', '25');
+            circle.setAttribute('r', '12');
+            circle.setAttribute('fill', 'white');
+            circle.setAttribute('filter', 'url(#gooey)');
+            circle.setAttribute('id', 'cursor-circle');
+
+            svg.appendChild(circle);
+            cursor.appendChild(svg);
+        }
+
+        createLiquidCursor();
+
+        // Track mouse movement
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Create cursor trail effect
-            createCursorTrail(mouseX, mouseY);
+            velocityX = mouseX - lastX;
+            velocityY = mouseY - lastY;
+            lastX = mouseX;
+            lastY = mouseY;
+            
+            createCursorTrail(mouseX, mouseY, velocityX, velocityY);
         });
 
-        // Smooth cursor following using GSAP
+        // Smooth cursor following with liquid deformation
         gsap.to({}, 0.016, {
             repeat: -1,
             onUpdate: function() {
                 cursorX += (mouseX - cursorX) * 0.2;
                 cursorY += (mouseY - cursorY) * 0.2;
                 
+                // Liquid shape deformation based on velocity
+                const speedFactor = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+                const deformation = Math.min(speedFactor * 0.15, 1);
+                
                 gsap.set(cursor, {
                     x: cursorX,
-                    y: cursorY
+                    y: cursorY,
+                    scaleX: 1 + deformation * 0.3,
+                    scaleY: 1 - deformation * 0.2
                 });
+
+                // Animate inner circle
+                const cursorCircle = document.getElementById('cursor-circle');
+                if (cursorCircle) {
+                    gsap.to(cursorCircle, {
+                        duration: 0.1,
+                        r: 12 + deformation * 3
+                    });
+                }
             }
         });
 
-        // ===== CREATE CURSOR TRAIL EFFECT =====
-        function createCursorTrail(x, y) {
-            if (Math.random() > 0.8) {
+        /* ===== CREATE LIQUID CURSOR TRAIL ===== */
+        function createCursorTrail(x, y, velX, velY) {
+            if (Math.random() > 0.75) {
                 const trail = document.createElement('div');
                 trail.classList.add('cursor-trail');
                 
+                const size = 6 + Math.sqrt(velX * velX + velY * velY) * 0.5;
+                const blur = Math.sqrt(velX * velX + velY * velY) * 0.2;
+                
                 gsap.set(trail, {
                     x: x,
-                    y: y
+                    y: y,
+                    width: size,
+                    height: size,
+                    filter: `blur(${blur}px)`
                 });
                 
                 document.body.appendChild(trail);
@@ -885,7 +1049,9 @@
                 gsap.to(trail, {
                     duration: 0.8,
                     opacity: 0,
-                    y: y + 30,
+                    x: x + velX * 10,
+                    y: y + velY * 10,
+                    scale: 0.5,
                     onComplete: () => {
                         trail.remove();
                     }
@@ -893,48 +1059,95 @@
             }
         }
 
-        /* ===== CURSOR INTERACTION WITH CLICKABLE ELEMENTS ===== */
+        /* ===== CURSOR INTERACTION WITH ELEMENTS ===== */
         const clickableElements = document.querySelectorAll('button, a, input, textarea');
         
         clickableElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
                 gsap.to(cursor, {
                     duration: 0.3,
-                    scale: 1.5
+                    scale: 1.8,
+                    boxShadow: '0 0 40px rgba(255, 255, 255, 1)'
                 });
             });
             
             element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
                 gsap.to(cursor, {
                     duration: 0.3,
-                    scale: 1
+                    scale: 1,
+                    boxShadow: '0 0 15px rgba(255, 255, 255, 0.8)'
                 });
             });
         });
 
-        /* ===== CLICK ANIMATION ON CURSOR ===== */
+        /* ===== CLICK ANIMATION ===== */
         document.addEventListener('mousedown', () => {
             gsap.to(cursor, {
                 duration: 0.2,
-                scale: 0.8
+                scale: 0.6,
+                opacity: 0.8
             });
         });
 
         document.addEventListener('mouseup', () => {
             gsap.to(cursor, {
                 duration: 0.2,
-                scale: 1
+                scale: 1,
+                opacity: 1
             });
         });
 
-        /* ===== SHOW WELCOME MESSAGE FUNCTION ===== */
+        /* ===== SCROLL-TRIGGERED ANIMATIONS FOR SECTIONS ===== */
+        gsap.utils.toArray('section').forEach((section) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    markers: false
+                },
+                duration: 1,
+                opacity: 0,
+                y: 50,
+                ease: 'power3.out'
+            });
+
+            // Animate h2 text with character reveal
+            const h2 = section.querySelector('h2');
+            if (h2) {
+                gsap.from(h2, {
+                    scrollTrigger: {
+                        trigger: h2,
+                        start: 'top 85%',
+                        markers: false
+                    },
+                    duration: 1.2,
+                    opacity: 0,
+                    x: -30,
+                    ease: 'power2.out'
+                });
+            }
+        });
+
+        /* ===== PARALLAX EFFECT ON SCROLL ===== */
+        gsap.to('.color-column', {
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 1,
+                markers: false
+            },
+            y: (i) => {
+                return i < 4 ? -100 : 100;
+            }
+        });
+
+        /* ===== SHOW WELCOME MESSAGE ===== */
         function showWelcomeMessage() {
             alert("🎓 Welcome to EduCare School!\n\nWe're excited to have you here. Explore our courses and discover a world of learning opportunities!");
         }
 
-        /* ===== FORM VALIDATION FUNCTION ===== */
+        /* ===== FORM VALIDATION ===== */
         function validateForm(event) {
             event.preventDefault();
 
@@ -974,11 +1187,9 @@
             if (isValid) {
                 alert('✅ Thank you for reaching out!\n\nYour message has been sent successfully.\nWe will get back to you soon.');
                 document.getElementById('contactForm').reset();
-                console.log('Form submitted with:', { name, email, message });
             }
         }
 
-        /* ===== HELPER FUNCTION: SHOW ERROR MESSAGE ===== */
         function showError(errorElementId, errorMessage) {
             const errorElement = document.getElementById(errorElementId);
             errorElement.textContent = errorMessage;
@@ -986,7 +1197,6 @@
             formGroup.classList.add('error');
         }
 
-        /* ===== HELPER FUNCTION: CLEAR ERROR MESSAGES ===== */
         function clearErrorMessages() {
             const errorMessages = document.querySelectorAll('.error-message');
             const errorGroups = document.querySelectorAll('.form-group.error');
@@ -1000,7 +1210,7 @@
             });
         }
 
-        /* ===== SMOOTH SCROLLING FOR NAVIGATION LINKS ===== */
+        /* ===== SMOOTH SCROLLING ===== */
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -1014,42 +1224,9 @@
             });
         });
 
-        /* ===== REAL-TIME ERROR CLEARING ===== */
-        document.getElementById('name').addEventListener('input', function() {
-            clearErrorMessages();
-        });
-
-        document.getElementById('email').addEventListener('input', function() {
-            clearErrorMessages();
-        });
-
-        document.getElementById('message').addEventListener('input', function() {
-            clearErrorMessages();
-        });
-
-        /* ===== SECTION ANIMATION ON SCROLL ===== */
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    gsap.from(entry.target, {
-                        duration: 0.8,
-                        opacity: 0,
-                        y: 30,
-                        ease: 'power2.out'
-                    });
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
+        document.getElementById('name').addEventListener('input', clearErrorMessages);
+        document.getElementById('email').addEventListener('input', clearErrorMessages);
+        document.getElementById('message').addEventListener('input', clearErrorMessages);
     </script>
 </body>
 </html>

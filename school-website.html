@@ -17,69 +17,122 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            cursor: none;
+        html, body {
+            width: 100%;
+            height: 100%;
             overflow-x: hidden;
         }
 
-        /* ===== ANIMATED CURSOR STYLING ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            cursor: none;
+            background: #000;
+        }
+
+        /* ===== ANIMATED BACKGROUND WITH DIVERGING COLORS ===== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .color-column {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            opacity: 0.9;
+            mix-blend-mode: screen;
+        }
+
+        /* ===== NETFLIX-STYLE DIVERGING STRIPES ===== */
+        .column-1 { left: 0%; width: 12.5%; background: linear-gradient(180deg, #ff6b35 0%, #ff8c42 50%, #ffa630 100%); }
+        .column-2 { left: 12.5%; width: 12.5%; background: linear-gradient(180deg, #ff8c42 0%, #ffb347 50%, #ffd60a 100%); }
+        .column-3 { left: 25%; width: 12.5%; background: linear-gradient(180deg, #ffd60a 0%, #ffff00 50%, #ffff66 100%); }
+        .column-4 { left: 37.5%; width: 12.5%; background: linear-gradient(180deg, #ffff00 0%, #ccff00 50%, #99ff00 100%); }
+        .column-5 { left: 50%; width: 12.5%; background: linear-gradient(180deg, #99ff00 0%, #00ff00 50%, #00cc66 100%); }
+        .column-6 { left: 62.5%; width: 12.5%; background: linear-gradient(180deg, #00cc66 0%, #00ccff 50%, #0099ff 100%); }
+        .column-7 { left: 75%; width: 12.5%; background: linear-gradient(180deg, #0099ff 0%, #6600ff 50%, #9933ff 100%); }
+        .column-8 { left: 87.5%; width: 12.5%; background: linear-gradient(180deg, #9933ff 0%, #cc00ff 50%, #ff0099 100%); }
+
+        .column-1.shift { transform: translateY(-100px); }
+        .column-2.shift { transform: translateY(-80px); }
+        .column-3.shift { transform: translateY(-60px); }
+        .column-4.shift { transform: translateY(-40px); }
+        .column-5.shift { transform: translateY(40px); }
+        .column-6.shift { transform: translateY(60px); }
+        .column-7.shift { transform: translateY(80px); }
+        .column-8.shift { transform: translateY(100px); }
+
+        /* ===== GLASS OVERLAY ===== */
+        .glass-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        /* ===== ANIMATED CURSOR ===== */
         .cursor {
             position: fixed;
             width: 20px;
             height: 20px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(102, 126, 234, 0.4) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px rgba(102, 126, 234, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .cursor.active {
             width: 40px;
             height: 40px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(118, 75, 162, 0.3) 100%);
-            box-shadow: 0 0 25px rgba(118, 75, 162, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.4);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 100%);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
         /* Cursor trail effect */
         .cursor-trail {
             position: fixed;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, transparent 70%);
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
         }
 
-        /* ===== FROSTED GLASS EFFECT FOR ALL SECTIONS ===== */
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        /* ===== CONTENT WRAPPER ===== */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
         }
 
         /* ===== Header and Navigation ===== */
         header {
-            background: rgba(102, 126, 234, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             position: sticky;
             top: 0;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .header-container {
@@ -94,15 +147,19 @@
 
         .school-name {
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 700;
             text-decoration: none;
             color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ff6b35, #cc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .school-name:hover {
-            text-shadow: 0 4px 20px rgba(102, 126, 234, 0.6);
+            text-shadow: 0 4px 30px rgba(255, 255, 255, 0.5);
         }
 
         /* ===== Navigation Menu ===== */
@@ -114,18 +171,27 @@
         }
 
         nav a {
-            color: white;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
-        nav a:hover {
-            opacity: 0.8;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.8);
-            padding-bottom: 0.3rem;
-            text-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b35, #cc00ff);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* ===== Main Container ===== */
@@ -135,56 +201,82 @@
             padding: 2rem;
         }
 
-        /* ===== Sections with Frosted Glass ===== */
+        /* ===== Sections with Glass Effect ===== */
         section {
             margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 2.5rem;
+            border-radius: 20px;
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1.5px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             color: #333;
         }
 
         section h2 {
             color: white;
             margin-bottom: 1.5rem;
-            font-size: 2rem;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.6);
+            font-size: 2.2rem;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, #ff6b35, #cc00ff) 1;
             padding-bottom: 0.5rem;
             display: inline-block;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
         }
 
         section p {
-            color: rgba(0, 0, 0, 0.9);
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* ===== Home Section (Banner) ===== */
         #home {
-            background: linear-gradient(rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23667eea" width="1200" height="400"/><circle cx="100" cy="100" r="80" fill="%23764ba2" opacity="0.5"/><circle cx="1100" cy="300" r="120" fill="%23764ba2" opacity="0.3"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%%" style="stop-color:rgba(255,107,53,0.2)"/><stop offset="100%%" style="stop-color:rgba(204,0,255,0.2)"/></linearGradient></defs><rect fill="url(%23grad1)" width="1200" height="400"/></svg>');
             background-size: cover;
             background-position: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             color: white;
             text-align: center;
-            min-height: 400px;
+            min-height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 107, 53, 0.1) 0%, 
+                rgba(255, 195, 0, 0.1) 25%, 
+                rgba(51, 255, 51, 0.1) 50%, 
+                rgba(0, 153, 255, 0.1) 75%, 
+                rgba(204, 0, 255, 0.1) 100%);
+            pointer-events: none;
         }
 
         #home h2 {
             color: white;
             border-bottom: 3px solid rgba(255, 255, 255, 0.7);
-            font-size: 2.5rem;
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+            font-size: 3rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            z-index: 2;
+            position: relative;
+            background: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .welcome-message {
@@ -192,64 +284,71 @@
             font-size: 1.2rem;
             line-height: 1.8;
             color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            position: relative;
         }
 
         /* ===== Welcome Button ===== */
         .welcome-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(204, 0, 255, 0.3));
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.5rem;
             font-size: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(204, 0, 255, 0.2);
         }
 
         .welcome-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
-            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(204, 0, 255, 0.5));
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(204, 0, 255, 0.4);
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* ===== About Section ===== */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
+            z-index: 2;
+            position: relative;
         }
 
         .about-text p {
             margin-bottom: 1rem;
-            line-height: 1.8;
+            line-height: 1.9;
             text-align: justify;
-            color: rgba(0, 0, 0, 0.85);
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .about-image {
-            background: rgba(255, 255, 255, 0.12);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(204, 0, 255, 0.2));
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            height: 300px;
-            border-radius: 15px;
+            height: 320px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 3.5rem;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: inset 0 4px 15px rgba(255, 255, 255, 0.1);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 4px 20px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* ===== Courses Section ===== */
@@ -257,45 +356,78 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            z-index: 2;
+            position: relative;
         }
 
         .course-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(204, 0, 255, 0.15));
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(31, 38, 135, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 107, 53, 0) 0%, 
+                rgba(255, 195, 0, 0) 25%, 
+                rgba(51, 255, 51, 0) 50%, 
+                rgba(0, 153, 255, 0) 75%, 
+                rgba(204, 0, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .course-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(-15px);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.25), rgba(204, 0, 255, 0.25));
+            box-shadow: 0 8px 35px rgba(204, 0, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .course-card:hover::before {
+            opacity: 0.1;
         }
 
         .course-card h3 {
             margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.4rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
         }
 
         .course-card p {
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
             color: rgba(255, 255, 255, 0.9);
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== Contact Form ===== */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
+            z-index: 2;
+            position: relative;
         }
 
         .form-group {
@@ -305,18 +437,18 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: bold;
+            font-weight: 600;
             color: white;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.9rem;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            font-family: Arial, sans-serif;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 1rem;
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.08);
@@ -333,9 +465,9 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.7);
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(204, 0, 255, 0.2);
         }
 
         .form-group textarea {
@@ -345,40 +477,41 @@
 
         /* ===== Submit Button ===== */
         .submit-btn {
-            background: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.4), rgba(204, 0, 255, 0.4));
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.5rem;
             font-size: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             width: 100%;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(204, 0, 255, 0.2);
         }
 
         .submit-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.6), rgba(204, 0, 255, 0.6));
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(204, 0, 255, 0.4);
         }
 
         /* ===== Error Message ===== */
         .error-message {
-            color: #ff6b6b;
+            color: #ff6b9d;
             font-size: 0.9rem;
             margin-top: 0.3rem;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .form-group.error input,
         .form-group.error textarea {
-            border-color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.1);
+            border-color: #ff6b9d;
+            background: rgba(255, 107, 157, 0.1);
         }
 
         /* ===== Contact Info ===== */
@@ -386,31 +519,34 @@
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+            position: relative;
         }
 
         .contact-info h3 {
             color: white;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
         }
 
         .contact-info p {
-            color: rgba(0, 0, 0, 0.9);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 0.5rem;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         /* ===== Footer ===== */
         footer {
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         footer p {
@@ -454,11 +590,11 @@
             }
 
             #home {
-                min-height: 300px;
+                min-height: 350px;
             }
 
             #home h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .welcome-message {
@@ -488,182 +624,222 @@
             .cursor {
                 display: none;
             }
+
+            #home h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- ===== ANIMATED CURSOR ELEMENT ===== -->
-    <div class="cursor" id="cursor"></div>
-
-    <!-- ===== HEADER WITH NAVIGATION ===== -->
-    <header>
-        <div class="header-container">
-            <a href="#home" class="school-name">🎓 EduCare School</a>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#courses">Courses</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- ===== MAIN CONTAINER ===== -->
-    <div class="container">
-        <!-- ===== HOME SECTION ===== -->
-        <section id="home">
-            <h2>Welcome to EduCare School</h2>
-            <p class="welcome-message">
-                We believe in providing quality education that empowers students to achieve their dreams.<br>
-                Join us on a journey of learning, growth, and excellence!
-            </p>
-            <!-- Interactive welcome button -->
-            <button class="welcome-btn" onclick="showWelcomeMessage()">
-                Click Me - Learn More!
-            </button>
-        </section>
-
-        <!-- ===== ABOUT SECTION ===== -->
-        <section id="about">
-            <h2>About Our School</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        <strong>EduCare School</strong> has been a beacon of excellence in education for over 20 years. 
-                        We are committed to nurturing young minds and developing well-rounded individuals.
-                    </p>
-                    <p>
-                        Our experienced faculty members use modern teaching methodologies to make learning engaging 
-                        and effective. We provide a supportive environment where every student can thrive.
-                    </p>
-                    <p>
-                        With state-of-the-art facilities and a focus on both academics and extracurricular activities, 
-                        we ensure holistic development of our students.
-                    </p>
-                </div>
-                <div class="about-image">
-                    📚 Learning Hub
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== COURSES SECTION ===== -->
-        <section id="courses">
-            <h2>Our Courses</h2>
-            <div class="courses-grid">
-                <!-- Course 1 -->
-                <div class="course-card">
-                    <h3>📖 English Literature</h3>
-                    <p>
-                        Explore the world of literature, improve writing skills, and develop critical thinking 
-                        through classic and modern texts.
-                    </p>
-                </div>
-
-                <!-- Course 2 -->
-                <div class="course-card">
-                    <h3>🔬 Science & Lab</h3>
-                    <p>
-                        Hands-on learning with practical experiments in Physics, Chemistry, and Biology. 
-                        Discover the wonders of the natural world.
-                    </p>
-                </div>
-
-                <!-- Course 3 -->
-                <div class="course-card">
-                    <h3>🧮 Mathematics</h3>
-                    <p>
-                        Master fundamental concepts and advanced problem-solving techniques. 
-                        Build confidence in numbers and logical reasoning.
-                    </p>
-                </div>
-
-                <!-- Course 4 -->
-                <div class="course-card">
-                    <h3>💻 Computer Science</h3>
-                    <p>
-                        Learn programming, web development, and digital literacy in our modern computer labs. 
-                        Prepare for the digital future.
-                    </p>
-                </div>
-
-                <!-- Course 5 -->
-                <div class="course-card">
-                    <h3>🎨 Arts & Creativity</h3>
-                    <p>
-                        Express yourself through painting, drawing, and creative design. 
-                        Develop artistic skills and creative thinking.
-                    </p>
-                </div>
-
-                <!-- Course 6 -->
-                <div class="course-card">
-                    <h3>🏃 Physical Education</h3>
-                    <p>
-                        Stay fit and healthy while learning teamwork and sportsmanship. 
-                        Various sports and fitness programs available.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== CONTACT SECTION ===== -->
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">
-                Have questions? We'd love to hear from you! Fill out the form below and we'll get back to you soon.
-            </p>
-
-            <!-- Contact Form -->
-            <form class="contact-form" id="contactForm" onsubmit="validateForm(event)">
-                <!-- Name Field -->
-                <div class="form-group">
-                    <label for="name">Your Name *</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                    <span class="error-message" id="nameError"></span>
-                </div>
-
-                <!-- Email Field -->
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                    <span class="error-message" id="emailError"></span>
-                </div>
-
-                <!-- Message Field -->
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-                    <span class="error-message" id="messageError"></span>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-
-            <!-- Contact Information -->
-            <div class="contact-info">
-                <h3>📍 Our Contact Details</h3>
-                <p><strong>Address:</strong> 123 Education Street, Learning City, LC 12345</p>
-                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                <p><strong>Email:</strong> info@educare.school</p>
-                <p><strong>Hours:</strong> Monday - Friday: 8:00 AM - 4:00 PM</p>
-            </div>
-        </section>
+    <!-- ===== ANIMATED BACKGROUND WITH DIVERGING COLORS ===== -->
+    <div class="animated-bg">
+        <div class="color-column column-1"></div>
+        <div class="color-column column-2"></div>
+        <div class="color-column column-3"></div>
+        <div class="color-column column-4"></div>
+        <div class="color-column column-5"></div>
+        <div class="color-column column-6"></div>
+        <div class="color-column column-7"></div>
+        <div class="color-column column-8"></div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p>&copy; 2026 EduCare School. All rights reserved.</p>
-        <p>Empowering Minds, Building Futures</p>
-    </footer>
+    <!-- ===== GLASS OVERLAY ===== -->
+    <div class="glass-overlay"></div>
+
+    <!-- ===== ANIMATED CURSOR ===== -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- ===== CONTENT WRAPPER ===== -->
+    <div class="content-wrapper">
+        <!-- ===== HEADER WITH NAVIGATION ===== -->
+        <header>
+            <div class="header-container">
+                <a href="#home" class="school-name">🎓 EduCare School</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ===== MAIN CONTAINER ===== -->
+        <div class="container">
+            <!-- ===== HOME SECTION ===== -->
+            <section id="home">
+                <h2>Welcome to EduCare School</h2>
+                <p class="welcome-message">
+                    We believe in providing quality education that empowers students to achieve their dreams.<br>
+                    Join us on a journey of learning, growth, and excellence!
+                </p>
+                <!-- Interactive welcome button -->
+                <button class="welcome-btn" onclick="showWelcomeMessage()">
+                    Click Me - Learn More!
+                </button>
+            </section>
+
+            <!-- ===== ABOUT SECTION ===== -->
+            <section id="about">
+                <h2>About Our School</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            <strong>EduCare School</strong> has been a beacon of excellence in education for over 20 years. 
+                            We are committed to nurturing young minds and developing well-rounded individuals.
+                        </p>
+                        <p>
+                            Our experienced faculty members use modern teaching methodologies to make learning engaging 
+                            and effective. We provide a supportive environment where every student can thrive.
+                        </p>
+                        <p>
+                            With state-of-the-art facilities and a focus on both academics and extracurricular activities, 
+                            we ensure holistic development of our students.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        📚 Learning Hub
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== COURSES SECTION ===== -->
+            <section id="courses">
+                <h2>Our Courses</h2>
+                <div class="courses-grid">
+                    <!-- Course 1 -->
+                    <div class="course-card">
+                        <h3>📖 English Literature</h3>
+                        <p>
+                            Explore the world of literature, improve writing skills, and develop critical thinking 
+                            through classic and modern texts.
+                        </p>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="course-card">
+                        <h3>🔬 Science & Lab</h3>
+                        <p>
+                            Hands-on learning with practical experiments in Physics, Chemistry, and Biology. 
+                            Discover the wonders of the natural world.
+                        </p>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="course-card">
+                        <h3>🧮 Mathematics</h3>
+                        <p>
+                            Master fundamental concepts and advanced problem-solving techniques. 
+                            Build confidence in numbers and logical reasoning.
+                        </p>
+                    </div>
+
+                    <!-- Course 4 -->
+                    <div class="course-card">
+                        <h3>💻 Computer Science</h3>
+                        <p>
+                            Learn programming, web development, and digital literacy in our modern computer labs. 
+                            Prepare for the digital future.
+                        </p>
+                    </div>
+
+                    <!-- Course 5 -->
+                    <div class="course-card">
+                        <h3>🎨 Arts & Creativity</h3>
+                        <p>
+                            Express yourself through painting, drawing, and creative design. 
+                            Develop artistic skills and creative thinking.
+                        </p>
+                    </div>
+
+                    <!-- Course 6 -->
+                    <div class="course-card">
+                        <h3>🏃 Physical Education</h3>
+                        <p>
+                            Stay fit and healthy while learning teamwork and sportsmanship. 
+                            Various sports and fitness programs available.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== CONTACT SECTION ===== -->
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    Have questions? We'd love to hear from you! Fill out the form below and we'll get back to you soon.
+                </p>
+
+                <!-- Contact Form -->
+                <form class="contact-form" id="contactForm" onsubmit="validateForm(event)">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <!-- Message Field -->
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+                        <span class="error-message" id="messageError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h3>📍 Our Contact Details</h3>
+                    <p><strong>Address:</strong> 123 Education Street, Learning City, LC 12345</p>
+                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Email:</strong> info@educare.school</p>
+                    <p><strong>Hours:</strong> Monday - Friday: 8:00 AM - 4:00 PM</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer>
+            <p>&copy; 2026 EduCare School. All rights reserved.</p>
+            <p>Empowering Minds, Building Futures</p>
+        </footer>
+    </div>
 
     <!-- Internal JavaScript with GSAP -->
     <script>
+        /* ===== NETFLIX-STYLE DIVERGING COLOR ANIMATION ===== */
+        // Animate the color columns to diverge like Netflix intro
+        const columns = document.querySelectorAll('.color-column');
+        
+        function animateBackgroundDivergence() {
+            columns.forEach((column, index) => {
+                gsap.to(column, {
+                    duration: 8 + index * 0.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    y: index < 4 ? -150 - (index * 30) : 150 + ((index - 4) * 30)
+                });
+            });
+        }
+
+        // Start animation on load
+        window.addEventListener('load', animateBackgroundDivergence);
+
         /* ===== GSAP ANIMATED CURSOR ===== */
-        // This creates a smooth, animated cursor that follows mouse movement
         const cursor = document.getElementById('cursor');
         let mouseX = 0;
         let mouseY = 0;
@@ -683,7 +859,6 @@
         gsap.to({}, 0.016, {
             repeat: -1,
             onUpdate: function() {
-                // Interpolate cursor position for smooth following
                 cursorX += (mouseX - cursorX) * 0.2;
                 cursorY += (mouseY - cursorY) * 0.2;
                 
@@ -695,9 +870,8 @@
         });
 
         // ===== CREATE CURSOR TRAIL EFFECT =====
-        // This function creates small particles that follow the cursor
         function createCursorTrail(x, y) {
-            if (Math.random() > 0.8) { // Create trail intermittently
+            if (Math.random() > 0.8) {
                 const trail = document.createElement('div');
                 trail.classList.add('cursor-trail');
                 
@@ -708,7 +882,6 @@
                 
                 document.body.appendChild(trail);
                 
-                // Animate trail particle and remove it
                 gsap.to(trail, {
                     duration: 0.8,
                     opacity: 0,
@@ -721,7 +894,6 @@
         }
 
         /* ===== CURSOR INTERACTION WITH CLICKABLE ELEMENTS ===== */
-        // Make cursor grow when hovering over interactive elements
         const clickableElements = document.querySelectorAll('button, a, input, textarea');
         
         clickableElements.forEach(element => {
@@ -743,7 +915,6 @@
         });
 
         /* ===== CLICK ANIMATION ON CURSOR ===== */
-        // Add a pulse effect when clicking
         document.addEventListener('mousedown', () => {
             gsap.to(cursor, {
                 duration: 0.2,
@@ -759,29 +930,22 @@
         });
 
         /* ===== SHOW WELCOME MESSAGE FUNCTION ===== */
-        // This function is called when the user clicks the "Click Me" button
         function showWelcomeMessage() {
             alert("🎓 Welcome to EduCare School!\n\nWe're excited to have you here. Explore our courses and discover a world of learning opportunities!");
         }
 
         /* ===== FORM VALIDATION FUNCTION ===== */
-        // This function validates the contact form before submission
         function validateForm(event) {
-            // Prevent the form from submitting automatically
             event.preventDefault();
 
-            // Get form input values
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
 
-            // Clear all previous error messages
             clearErrorMessages();
 
-            // Flag to check if form is valid
             let isValid = true;
 
-            /* ===== VALIDATE NAME FIELD ===== */
             if (name === '') {
                 showError('nameError', 'Please enter your name');
                 isValid = false;
@@ -790,8 +954,6 @@
                 isValid = false;
             }
 
-            /* ===== VALIDATE EMAIL FIELD ===== */
-            // Email validation using a regular expression pattern
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (email === '') {
                 showError('emailError', 'Please enter your email address');
@@ -801,7 +963,6 @@
                 isValid = false;
             }
 
-            /* ===== VALIDATE MESSAGE FIELD ===== */
             if (message === '') {
                 showError('messageError', 'Please enter your message');
                 isValid = false;
@@ -810,49 +971,36 @@
                 isValid = false;
             }
 
-            /* ===== IF ALL VALIDATION PASSES ===== */
             if (isValid) {
-                // Show success message
                 alert('✅ Thank you for reaching out!\n\nYour message has been sent successfully.\nWe will get back to you soon.');
-
-                // Clear all form fields
                 document.getElementById('contactForm').reset();
-
-                // Optional: You can also log the form data
                 console.log('Form submitted with:', { name, email, message });
             }
         }
 
         /* ===== HELPER FUNCTION: SHOW ERROR MESSAGE ===== */
-        // This function displays error messages below form fields
         function showError(errorElementId, errorMessage) {
             const errorElement = document.getElementById(errorElementId);
             errorElement.textContent = errorMessage;
-
-            // Add visual feedback by adding error class to the form group
             const formGroup = errorElement.parentElement;
             formGroup.classList.add('error');
         }
 
         /* ===== HELPER FUNCTION: CLEAR ERROR MESSAGES ===== */
-        // This function removes all error messages and error styling
         function clearErrorMessages() {
             const errorMessages = document.querySelectorAll('.error-message');
             const errorGroups = document.querySelectorAll('.form-group.error');
 
-            // Clear error text
             errorMessages.forEach(error => {
                 error.textContent = '';
             });
 
-            // Remove error styling
             errorGroups.forEach(group => {
                 group.classList.remove('error');
             });
         }
 
         /* ===== SMOOTH SCROLLING FOR NAVIGATION LINKS ===== */
-        // This adds smooth scrolling when clicking on navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -867,7 +1015,6 @@
         });
 
         /* ===== REAL-TIME ERROR CLEARING ===== */
-        // This clears error messages as the user starts typing
         document.getElementById('name').addEventListener('input', function() {
             clearErrorMessages();
         });
@@ -881,7 +1028,6 @@
         });
 
         /* ===== SECTION ANIMATION ON SCROLL ===== */
-        // Add subtle animations when sections come into view
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'

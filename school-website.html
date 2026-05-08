@@ -4,9 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduCare School - Quality Education for All</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Internal CSS Styling -->
+    <!-- Internal CSS Styling - Material Design 3 -->
     <style>
+        /* ===== CSS Variables - Material Design 3 Color System ===== */
+        :root {
+            /* Primary Colors */
+            --md-primary: #6750a4;
+            --md-primary-container: #eaddff;
+            --md-primary-light: #7d5ba8;
+            --md-primary-dark: #533978;
+            
+            /* Secondary Colors */
+            --md-secondary: #625b71;
+            --md-secondary-container: #e8def8;
+            
+            /* Tertiary Colors */
+            --md-tertiary: #7d5260;
+            --md-tertiary-container: #ffd8e4;
+            
+            /* Surface Colors */
+            --md-surface: #fffbfe;
+            --md-surface-dim: #f3eff4;
+            --md-surface-bright: #fffbfe;
+            --md-surface-container-lowest: #ffffff;
+            --md-surface-container-low: #f9f6fb;
+            --md-surface-container: #f3eff4;
+            --md-surface-container-high: #ede9ee;
+            --md-surface-container-highest: #e8e5e9;
+            
+            /* Error Colors */
+            --md-error: #b3261e;
+            --md-error-container: #f9dedc;
+            
+            /* Success Colors */
+            --md-success: #4caf50;
+            --md-success-container: #c8e6c9;
+            
+            /* Text Colors */
+            --md-on-primary: #ffffff;
+            --md-on-secondary: #ffffff;
+            --md-on-surface: #1c1b1f;
+            --md-on-surface-variant: #49454e;
+            
+            /* Elevation */
+            --md-elevation-0: none;
+            --md-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            --md-elevation-2: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+            --md-elevation-3: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+            --md-elevation-4: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+            --md-elevation-5: 0 20px 25px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.02);
+            
+            /* Border Radius */
+            --md-shape-corner-none: 0;
+            --md-shape-corner-xs: 4px;
+            --md-shape-corner-sm: 8px;
+            --md-shape-corner-md: 12px;
+            --md-shape-corner-lg: 16px;
+            --md-shape-corner-xl: 28px;
+            
+            /* Transitions */
+            --md-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --md-transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --md-transition-slow: 350ms cubic-bezier(0.2, 0, 0.1, 1);
+        }
+
         /* ===== Reset and General Styles ===== */
         * {
             margin: 0;
@@ -14,22 +77,29 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            color: var(--md-on-surface);
+            background-color: var(--md-surface);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* ===== Header and Navigation ===== */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: var(--md-surface-container-high);
+            color: var(--md-on-surface);
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--md-elevation-2);
             z-index: 100;
+            border-bottom: 1px solid var(--md-surface-container-highest);
         }
 
         .header-container {
@@ -40,34 +110,60 @@
             align-items: center;
             padding: 0 2rem;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .school-name {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 600;
             text-decoration: none;
-            color: white;
+            color: var(--md-primary);
+            letter-spacing: 0.3px;
+            transition: color var(--md-transition-fast);
+        }
+
+        .school-name:hover {
+            color: var(--md-primary-light);
         }
 
         /* ===== Navigation Menu ===== */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
 
         nav a {
-            color: white;
+            color: var(--md-on-surface);
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s ease;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--md-shape-corner-md);
+            transition: all var(--md-transition-normal);
+            position: relative;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--md-primary);
+            transition: all var(--md-transition-normal);
+            transform: translateX(-50%);
         }
 
         nav a:hover {
-            opacity: 0.7;
-            border-bottom: 2px solid white;
-            padding-bottom: 0.3rem;
+            background-color: var(--md-primary-container);
+            color: var(--md-primary);
+        }
+
+        nav a:hover::before {
+            width: calc(100% - 2rem);
         }
 
         /* ===== Main Container ===== */
@@ -79,125 +175,225 @@
 
         /* ===== Sections ===== */
         section {
-            margin: 2rem 0;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 2.5rem 0;
+            padding: 2.5rem;
+            background: var(--md-surface);
+            border-radius: var(--md-shape-corner-lg);
+            box-shadow: var(--md-elevation-1);
+            border: 1px solid var(--md-surface-container-high);
+            transition: all var(--md-transition-normal);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:hover {
+            box-shadow: var(--md-elevation-2);
         }
 
         section h2 {
-            color: #667eea;
+            color: var(--md-primary);
             margin-bottom: 1.5rem;
-            font-size: 2rem;
-            border-bottom: 3px solid #764ba2;
-            padding-bottom: 0.5rem;
-            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         /* ===== Home Section (Banner) ===== */
         #home {
-            background: linear-gradient(rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23667eea" width="1200" height="400"/><circle cx="100" cy="100" r="80" fill="%23764ba2" opacity="0.5"/><circle cx="1100" cy="300" r="100" fill="%23764ba2" opacity="0.3"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, var(--md-primary) 0%, var(--md-tertiary) 100%);
             color: white;
             text-align: center;
-            min-height: 400px;
+            min-height: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            box-shadow: var(--md-elevation-3);
+            border: none;
         }
 
         #home h2 {
             color: white;
-            border-bottom: 3px solid white;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .welcome-message {
             margin: 1.5rem 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            max-width: 600px;
         }
 
-        /* ===== Welcome Button ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== Button Styles - Material Design 3 ===== */
         .welcome-btn {
-            background-color: white;
-            color: #667eea;
-            padding: 0.8rem 2rem;
+            background-color: var(--md-primary-container);
+            color: var(--md-primary);
+            padding: 1rem 2rem;
             font-size: 1rem;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--md-shape-corner-md);
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
+            font-weight: 600;
+            transition: all var(--md-transition-normal);
+            margin-top: 1.5rem;
+            box-shadow: var(--md-elevation-1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .welcome-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width var(--md-transition-normal), height var(--md-transition-normal);
         }
 
         .welcome-btn:hover {
-            background-color: #764ba2;
+            background-color: var(--md-primary);
             color: white;
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: var(--md-elevation-3);
+        }
+
+        .welcome-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .welcome-btn:active {
+            transform: translateY(0);
+            box-shadow: var(--md-elevation-1);
         }
 
         /* ===== About Section ===== */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .about-text p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             line-height: 1.8;
-            text-align: justify;
+            color: var(--md-on-surface-variant);
+            font-weight: 400;
         }
 
         .about-image {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            height: 300px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--md-primary-container) 0%, var(--md-secondary-container) 100%);
+            height: 350px;
+            border-radius: var(--md-shape-corner-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3rem;
+            color: var(--md-primary);
+            font-size: 5rem;
+            box-shadow: var(--md-elevation-2);
+            transition: all var(--md-transition-normal);
+        }
+
+        .about-image:hover {
+            transform: scale(1.02) rotateY(5deg);
+            box-shadow: var(--md-elevation-4);
         }
 
         /* ===== Courses Section ===== */
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 1.5rem;
         }
 
         .course-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: var(--md-surface-container-low);
+            border: 1px solid var(--md-surface-container-high);
+            color: var(--md-on-surface);
+            padding: 2rem;
+            border-radius: var(--md-shape-corner-lg);
+            transition: all var(--md-transition-normal);
+            box-shadow: var(--md-elevation-1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--md-primary), var(--md-tertiary));
+            transition: left var(--md-transition-normal);
         }
 
         .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: var(--md-elevation-4);
+            border-color: var(--md-primary-container);
+            background: var(--md-primary-container);
+        }
+
+        .course-card:hover::before {
+            left: 0;
         }
 
         .course-card h3 {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--md-primary);
         }
 
         .course-card p {
             font-size: 0.95rem;
             line-height: 1.6;
+            color: var(--md-on-surface-variant);
         }
 
         /* ===== Contact Section ===== */
@@ -207,30 +403,46 @@
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            animation: slideUp 0.6s ease-out backwards;
         }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
 
         label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #667eea;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            color: var(--md-primary);
+            font-size: 0.95rem;
+            transition: color var(--md-transition-fast);
         }
 
         input, textarea {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            padding: 1rem;
+            border: 2px solid var(--md-surface-container-high);
+            border-radius: var(--md-shape-corner-md);
             font-size: 1rem;
-            font-family: 'Arial', sans-serif;
-            transition: border-color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+            transition: all var(--md-transition-normal);
+            background-color: var(--md-surface-container-low);
+            color: var(--md-on-surface);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--md-on-surface-variant);
+            opacity: 0.7;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+            border-color: var(--md-primary);
+            background-color: var(--md-surface);
+            box-shadow: 0 0 0 4px var(--md-primary-container);
         }
 
         textarea {
@@ -240,30 +452,103 @@
 
         /* ===== Submit Button ===== */
         .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--md-primary) 0%, var(--md-tertiary) 100%);
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 1rem 2rem;
             font-size: 1rem;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--md-shape-corner-md);
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            transition: all var(--md-transition-normal);
             width: 100%;
+            box-shadow: var(--md-elevation-2);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width var(--md-transition-normal), height var(--md-transition-normal);
         }
 
         .submit-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+            box-shadow: var(--md-elevation-4);
+        }
+
+        .submit-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: var(--md-elevation-1);
         }
 
         /* ===== Footer ===== */
         footer {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: var(--md-surface-container-high);
+            color: var(--md-on-surface);
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             margin-top: 3rem;
+            border-top: 1px solid var(--md-surface-container-highest);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--md-on-surface-variant);
+        }
+
+        /* ===== Error and Success Messages ===== */
+        .error-message {
+            color: var(--md-error);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            animation: shake 0.3s ease-in-out;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .success-message {
+            color: var(--md-success);
+            font-weight: 600;
+            padding: 1rem;
+            background-color: var(--md-success-container);
+            border-radius: var(--md-shape-corner-md);
+            margin-bottom: 1rem;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ===== Responsive Design ===== */
@@ -274,6 +559,7 @@
 
             section {
                 padding: 1.5rem;
+                margin: 1.5rem 0;
             }
 
             section h2 {
@@ -282,10 +568,12 @@
 
             .header-container {
                 padding: 0 1rem;
+                justify-content: center;
             }
 
             nav ul {
-                gap: 1rem;
+                width: 100%;
+                justify-content: center;
             }
 
             .about-content {
@@ -297,7 +585,7 @@
             }
 
             #home {
-                min-height: 300px;
+                min-height: 350px;
             }
 
             #home h2 {
@@ -307,18 +595,19 @@
             .welcome-message {
                 font-size: 1rem;
             }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* ===== Error Message Style ===== */
-        .error-message {
-            color: #d32f2f;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-        }
-
-        .success-message {
-            color: #388e3c;
-            font-weight: bold;
+        /* ===== Accessibility ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
@@ -442,57 +731,55 @@
     <!-- JavaScript for Interactivity -->
     <script>
         // ===== WELCOME MESSAGE FUNCTION =====
-        // This function displays a welcome message when the button is clicked
         function showWelcomeMessage() {
-            alert('Welcome to EduCare School! 🎓\n\nWe are excited to have you here. Our goal is to provide the best educational experience for all our students. Feel free to explore our courses and get in touch with us!');
+            alert('Welcome to EduCare School! 🎓\n\nWe are excited to have you here. Our goal is to provide the best educational experience for all our students. Feel free to explore our courses and contact us for more information!');
         }
 
         // ===== FORM VALIDATION FUNCTION =====
-        // This function validates the contact form before submission
         function submitForm(event) {
-            // Prevent the form from actually submitting to a server
             event.preventDefault();
 
-            // Get form input values
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
 
             // Clear previous error messages
+            document.getElementById('nameError').classList.remove('show');
+            document.getElementById('emailError').classList.remove('show');
+            document.getElementById('messageError').classList.remove('show');
+
             document.getElementById('nameError').innerText = '';
             document.getElementById('emailError').innerText = '';
             document.getElementById('messageError').innerText = '';
 
-            // Flag to track if form is valid
             let isValid = true;
 
-            // Check if Name field is empty
+            // Validation checks
             if (name === '') {
                 document.getElementById('nameError').innerText = '❌ Name is required!';
+                document.getElementById('nameError').classList.add('show');
                 isValid = false;
             }
 
-            // Check if Email field is empty
             if (email === '') {
                 document.getElementById('emailError').innerText = '❌ Email is required!';
+                document.getElementById('emailError').classList.add('show');
                 isValid = false;
             } else if (!isValidEmail(email)) {
-                // Check if Email format is valid
                 document.getElementById('emailError').innerText = '❌ Please enter a valid email address!';
+                document.getElementById('emailError').classList.add('show');
                 isValid = false;
             }
 
-            // Check if Message field is empty
             if (message === '') {
                 document.getElementById('messageError').innerText = '❌ Message is required!';
+                document.getElementById('messageError').classList.add('show');
                 isValid = false;
             }
 
-            // If all validations pass, show success message
             if (isValid) {
                 alert('✅ Thank you, ' + name + '!\n\nYour message has been received. We will get back to you soon!');
                 
-                // Clear the form fields after successful submission
                 document.getElementById('name').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('message').value = '';
@@ -500,12 +787,40 @@
         }
 
         // ===== EMAIL VALIDATION HELPER FUNCTION =====
-        // This function checks if an email address has a valid format
         function isValidEmail(email) {
-            // Regular expression pattern to validate email format
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailPattern.test(email);
         }
+
+        // ===== ADD SMOOTH SCROLL TO SECTIONS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>

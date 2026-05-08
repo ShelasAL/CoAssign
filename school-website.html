@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduCare School - Quality Education for All</title>
     
-    <!-- GSAP Library CDN with advanced plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
     <!-- Internal CSS Styling -->
     <style>
         /* ===== Reset and General Styles ===== */
@@ -18,124 +14,22 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            cursor: none;
-            background: #0a0a0a;
-        }
-
-        /* ===== ANIMATED BACKGROUND WITH DIVERGING COLORS ===== */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .color-column {
-            position: absolute;
-            height: 100%;
-            top: 0;
-            opacity: 0.95;
-            mix-blend-mode: screen;
-            transition: all 0.3s ease;
-        }
-
-        /* ===== COLOR COLUMNS - DYNAMIC GRADIENTS ===== */
-        .column-1 { left: 0%; width: 12.5%; }
-        .column-2 { left: 12.5%; width: 12.5%; }
-        .column-3 { left: 25%; width: 12.5%; }
-        .column-4 { left: 37.5%; width: 12.5%; }
-        .column-5 { left: 50%; width: 12.5%; }
-        .column-6 { left: 62.5%; width: 12.5%; }
-        .column-7 { left: 75%; width: 12.5%; }
-        .column-8 { left: 87.5%; width: 12.5%; }
-
-        /* ===== GLASS OVERLAY ===== */
-        .glass-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(1px);
-            -webkit-backdrop-filter: blur(1px);
-            z-index: 0;
-        }
-
-        /* ===== LIQUID CURSOR - WATER DROP SHAPE ===== */
-        .cursor {
-            position: fixed;
-            width: 24px;
-            height: 24px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(100, 200, 255, 0.4));
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 20px rgba(100, 200, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
-            filter: drop-shadow(0 0 8px rgba(100, 200, 255, 0.4));
-        }
-
-        .cursor.active {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(100, 200, 255, 0.3));
-            box-shadow: 0 0 30px rgba(100, 200, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.4);
-            filter: drop-shadow(0 0 15px rgba(100, 200, 255, 0.6));
-        }
-
-        /* Cursor trail effect */
-        .cursor-trail {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, rgba(100, 200, 255, 0.6) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            box-shadow: 0 0 10px rgba(100, 200, 255, 0.4);
-        }
-
-        /* ===== CONTENT WRAPPER ===== */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
+            background-color: #f4f4f4;
         }
 
         /* ===== Header and Navigation ===== */
         header {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 100;
-            border-bottom: 2px solid;
-            border-image: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff) 1;
-            animation: borderGradient 8s ease-in-out infinite;
-        }
-
-        @keyframes borderGradient {
-            0%, 100% { border-image: linear-gradient(90deg, #ff6b35, #ffd60a, #00ff00, #0099ff, #cc00ff) 1; }
-            50% { border-image: linear-gradient(90deg, #cc00ff, #0099ff, #00ff00, #ffd60a, #ff6b35) 1; }
         }
 
         .header-container {
@@ -150,19 +44,9 @@
 
         .school-name {
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: bold;
             text-decoration: none;
             color: white;
-            text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #ff6b35, #ff9500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .school-name:hover {
-            filter: drop-shadow(0 0 15px rgba(255, 150, 0, 0.6));
         }
 
         /* ===== Navigation Menu ===== */
@@ -174,27 +58,16 @@
         }
 
         nav a {
-            color: rgba(255, 255, 255, 0.9);
+            color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: relative;
+            transition: opacity 0.3s ease;
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #ff6b35, #ff9500);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+        nav a:hover {
+            opacity: 0.7;
+            border-bottom: 2px solid white;
+            padding-bottom: 0.3rem;
         }
 
         /* ===== Main Container ===== */
@@ -204,209 +77,95 @@
             padding: 2rem;
         }
 
-        /* ===== Liquid Glass Sections ===== */
+        /* ===== Sections ===== */
         section {
             margin: 2rem 0;
-            padding: 2.5rem;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 2px solid;
-            border-image: linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(100, 150, 255, 0.5)) 1;
-            box-shadow: 
-                0 8px 32px 0 rgba(31, 38, 135, 0.2),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-            color: #333;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            z-index: 1;
-        }
-
-        section:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 
-                0 15px 45px 0 rgba(100, 150, 255, 0.25),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         section h2 {
-            color: white;
+            color: #667eea;
             margin-bottom: 1.5rem;
-            font-size: 2.2rem;
-            border-bottom: 3px solid rgba(255, 150, 0, 0.8);
-            padding-bottom: 0.8rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 0.5rem;
             display: inline-block;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-            font-weight: 700;
-        }
-
-        section p {
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* ===== Home Section (Banner) ===== */
         #home {
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%%" style="stop-color:rgba(255,107,53,0.2)"/><stop offset="100%%" style="stop-color:rgba(100,150,255,0.2)"/></linearGradient></defs><rect fill="url(%23grad1)" width="1200" height="400"/></svg>');
+            background: linear-gradient(rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23667eea" width="1200" height="400"/><circle cx="100" cy="100" r="80" fill="%23764ba2" opacity="0.5"/><circle cx="1100" cy="300" r="100" fill="%23764ba2" opacity="0.3"/></svg>');
             background-size: cover;
             background-position: center;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             color: white;
             text-align: center;
-            min-height: 450px;
+            min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 107, 53, 0.1) 0%, 
-                rgba(255, 195, 0, 0.1) 25%, 
-                rgba(76, 175, 80, 0.1) 50%, 
-                rgba(33, 150, 243, 0.1) 75%, 
-                rgba(156, 39, 176, 0.1) 100%);
-            pointer-events: none;
         }
 
         #home h2 {
             color: white;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.7);
-            font-size: 3rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            z-index: 2;
-            position: relative;
-            background: linear-gradient(90deg, #ff6b35, #ff9500, #4caf50, #2196f3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            border-bottom: 3px solid white;
+            font-size: 2.5rem;
         }
 
         .welcome-message {
             margin: 1.5rem 0;
             font-size: 1.2rem;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-            position: relative;
         }
 
-        /* ===== Interactive Liquid Buttons ===== */
+        /* ===== Welcome Button ===== */
         .welcome-btn {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(100, 150, 255, 0.3));
-            color: white;
-            padding: 0.9rem 2.5rem;
+            background-color: white;
+            color: #667eea;
+            padding: 0.8rem 2rem;
             font-size: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: bold;
             transition: all 0.3s ease;
-            margin-top: 1.5rem;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-            position: relative;
-            box-shadow: 
-                0 4px 20px rgba(100, 150, 255, 0.2),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-        }
-
-        .welcome-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.6s ease;
-            z-index: -1;
-        }
-
-        .welcome-btn:hover::before {
-            transform: scale(1);
+            margin-top: 1rem;
         }
 
         .welcome-btn:hover {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(100, 150, 255, 0.5));
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            transform: scale(1.08);
-            box-shadow: 
-                0 8px 30px rgba(100, 150, 255, 0.4),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+            background-color: #764ba2;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* ===== About Section ===== */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
-            z-index: 2;
-            position: relative;
         }
 
         .about-text p {
             margin-bottom: 1rem;
-            line-height: 1.9;
+            line-height: 1.8;
             text-align: justify;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .about-image {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(100, 150, 255, 0.2));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            height: 320px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 300px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 
-                0 8px 25px rgba(31, 38, 135, 0.15),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .about-image:hover {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(100, 150, 255, 0.3));
-            box-shadow: 
-                0 15px 40px rgba(100, 150, 255, 0.2),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+            font-size: 3rem;
         }
 
         /* ===== Courses Section ===== */
@@ -414,260 +173,101 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
-            z-index: 2;
-            position: relative;
+            margin-top: 1.5rem;
         }
 
         .course-card {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(100, 150, 255, 0.15));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            padding: 1.5rem;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            box-shadow: 
-                0 4px 20px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 107, 53, 0) 0%, 
-                rgba(255, 195, 0, 0) 25%, 
-                rgba(76, 175, 80, 0) 50%, 
-                rgba(33, 150, 243, 0) 75%, 
-                rgba(100, 150, 255, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .course-card:hover {
-            transform: translateY(-15px);
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.25), rgba(100, 150, 255, 0.25));
-            box-shadow: 
-                0 15px 40px rgba(100, 150, 255, 0.25),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .course-card:hover::before {
-            opacity: 0.15;
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .course-card h3 {
             margin-bottom: 0.8rem;
-            font-size: 1.4rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
-            font-weight: 600;
+            font-size: 1.3rem;
         }
 
         .course-card p {
             font-size: 0.95rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1;
+            line-height: 1.6;
         }
 
-        /* ===== Contact Form ===== */
+        /* ===== Contact Section ===== */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            z-index: 2;
-            position: relative;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: white;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #667eea;
         }
 
-        .form-group input,
-        .form-group textarea {
+        input, textarea {
             width: 100%;
-            padding: 0.9rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
             font-size: 1rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: rgba(0, 0, 0, 0.9);
+            font-family: 'Arial', sans-serif;
+            transition: border-color 0.3s ease;
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(0, 0, 0, 0.5);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
+        input:focus, textarea:focus {
             outline: none;
-            border: 2px solid rgba(100, 150, 255, 0.8);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 
-                0 0 20px rgba(100, 150, 255, 0.2),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
         }
 
-        .form-group textarea {
+        textarea {
             resize: vertical;
             min-height: 120px;
         }
 
         /* ===== Submit Button ===== */
         .submit-btn {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.4), rgba(100, 150, 255, 0.4));
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 0.9rem 2.5rem;
+            padding: 0.8rem 2rem;
             font-size: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: 600;
-            width: 100%;
+            font-weight: bold;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            box-shadow: 
-                0 4px 20px rgba(100, 150, 255, 0.2),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.6s ease;
-            z-index: -1;
-        }
-
-        .submit-btn:hover::before {
-            transform: scale(1);
+            width: 100%;
         }
 
         .submit-btn:hover {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.6), rgba(100, 150, 255, 0.6));
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            transform: scale(1.03);
-            box-shadow: 
-                0 8px 30px rgba(100, 150, 255, 0.4),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
-        }
-
-        /* ===== Error Message ===== */
-        .error-message {
-            color: #ff6b9d;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group.error input,
-        .form-group.error textarea {
-            border: 2px solid #ff6b9d;
-            background: rgba(255, 107, 157, 0.1);
-        }
-
-        /* ===== Contact Info ===== */
-        .contact-info {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid rgba(255, 255, 255, 0.2);
-            z-index: 2;
-            position: relative;
-        }
-
-        .contact-info h3 {
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            font-weight: 600;
-        }
-
-        .contact-info p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
         /* ===== Footer ===== */
         footer {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            border-top: 2px solid rgba(255, 150, 0, 0.6);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        footer p {
-            margin: 0.5rem 0;
         }
 
         /* ===== Responsive Design ===== */
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-                justify-content: center;
-            }
-
-            .school-name {
-                font-size: 1.4rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                height: 250px;
-            }
-
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
             .container {
                 padding: 1rem;
             }
@@ -676,12 +276,32 @@
                 padding: 1.5rem;
             }
 
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .school-name {
+                font-size: 1.3rem;
+            }
+
             #home {
-                min-height: 350px;
+                min-height: 300px;
             }
 
             #home h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .welcome-message {
@@ -689,478 +309,203 @@
             }
         }
 
-        @media (max-width: 480px) {
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
+        /* ===== Error Message Style ===== */
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
 
-            .school-name {
-                font-size: 1.2rem;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            nav a {
-                display: block;
-                padding: 0.5rem 0;
-            }
-
-            .cursor {
-                display: none;
-            }
-
-            #home h2 {
-                font-size: 1.5rem;
-            }
+        .success-message {
+            color: #388e3c;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- ===== ANIMATED BACKGROUND WITH DIVERGING COLORS ===== -->
-    <div class="animated-bg">
-        <div class="color-column column-1"></div>
-        <div class="color-column column-2"></div>
-        <div class="color-column column-3"></div>
-        <div class="color-column column-4"></div>
-        <div class="color-column column-5"></div>
-        <div class="color-column column-6"></div>
-        <div class="color-column column-7"></div>
-        <div class="color-column column-8"></div>
-    </div>
-
-    <!-- ===== GLASS OVERLAY ===== -->
-    <div class="glass-overlay"></div>
-
-    <!-- ===== LIQUID CURSOR ===== -->
-    <div class="cursor" id="cursor"></div>
-
-    <!-- ===== CONTENT WRAPPER ===== -->
-    <div class="content-wrapper">
-        <!-- ===== HEADER WITH NAVIGATION ===== -->
-        <header>
-            <div class="header-container">
-                <a href="#home" class="school-name">🎓 EduCare School</a>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#courses">Courses</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <!-- ===== MAIN CONTAINER ===== -->
-        <div class="container">
-            <!-- ===== HOME SECTION ===== -->
-            <section id="home">
-                <h2>Welcome to EduCare School</h2>
-                <p class="welcome-message">
-                    We believe in providing quality education that empowers students to achieve their dreams.<br>
-                    Join us on a journey of learning, growth, and excellence!
-                </p>
-                <!-- Interactive welcome button -->
-                <button class="welcome-btn" onclick="showWelcomeMessage()">
-                    Click Me - Learn More!
-                </button>
-            </section>
-
-            <!-- ===== ABOUT SECTION ===== -->
-            <section id="about">
-                <h2>About Our School</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            <strong>EduCare School</strong> has been a beacon of excellence in education for over 20 years. 
-                            We are committed to nurturing young minds and developing well-rounded individuals.
-                        </p>
-                        <p>
-                            Our experienced faculty members use modern teaching methodologies to make learning engaging 
-                            and effective. We provide a supportive environment where every student can thrive.
-                        </p>
-                        <p>
-                            With state-of-the-art facilities and a focus on both academics and extracurricular activities, 
-                            we ensure holistic development of our students.
-                        </p>
-                    </div>
-                    <div class="about-image">
-                        📚 Learning Hub
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== COURSES SECTION ===== -->
-            <section id="courses">
-                <h2>Our Courses</h2>
-                <div class="courses-grid">
-                    <!-- Course 1 -->
-                    <div class="course-card">
-                        <h3>📖 English Literature</h3>
-                        <p>
-                            Explore the world of literature, improve writing skills, and develop critical thinking 
-                            through classic and modern texts.
-                        </p>
-                    </div>
-
-                    <!-- Course 2 -->
-                    <div class="course-card">
-                        <h3>🔬 Science & Lab</h3>
-                        <p>
-                            Hands-on learning with practical experiments in Physics, Chemistry, and Biology. 
-                            Discover the wonders of the natural world.
-                        </p>
-                    </div>
-
-                    <!-- Course 3 -->
-                    <div class="course-card">
-                        <h3>🧮 Mathematics</h3>
-                        <p>
-                            Master fundamental concepts and advanced problem-solving techniques. 
-                            Build confidence in numbers and logical reasoning.
-                        </p>
-                    </div>
-
-                    <!-- Course 4 -->
-                    <div class="course-card">
-                        <h3>💻 Computer Science</h3>
-                        <p>
-                            Learn programming, web development, and digital literacy in our modern computer labs. 
-                            Prepare for the digital future.
-                        </p>
-                    </div>
-
-                    <!-- Course 5 -->
-                    <div class="course-card">
-                        <h3>🎨 Arts & Creativity</h3>
-                        <p>
-                            Express yourself through painting, drawing, and creative design. 
-                            Develop artistic skills and creative thinking.
-                        </p>
-                    </div>
-
-                    <!-- Course 6 -->
-                    <div class="course-card">
-                        <h3>🏃 Physical Education</h3>
-                        <p>
-                            Stay fit and healthy while learning teamwork and sportsmanship. 
-                            Various sports and fitness programs available.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== CONTACT SECTION ===== -->
-            <section id="contact">
-                <h2>Contact Us</h2>
-                <p style="text-align: center; margin-bottom: 2rem;">
-                    Have questions? We'd love to hear from you! Fill out the form below and we'll get back to you soon.
-                </p>
-
-                <!-- Contact Form -->
-                <form class="contact-form" id="contactForm" onsubmit="validateForm(event)">
-                    <!-- Name Field -->
-                    <div class="form-group">
-                        <label for="name">Your Name *</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                        <span class="error-message" id="nameError"></span>
-                    </div>
-
-                    <!-- Email Field -->
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                        <span class="error-message" id="emailError"></span>
-                    </div>
-
-                    <!-- Message Field -->
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-                        <span class="error-message" id="messageError"></span>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-
-                <!-- Contact Information -->
-                <div class="contact-info">
-                    <h3>📍 Our Contact Details</h3>
-                    <p><strong>Address:</strong> 123 Education Street, Learning City, LC 12345</p>
-                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                    <p><strong>Email:</strong> info@educare.school</p>
-                    <p><strong>Hours:</strong> Monday - Friday: 8:00 AM - 4:00 PM</p>
-                </div>
-            </section>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="#home" class="school-name">🎓 EduCare School</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <!-- ===== FOOTER ===== -->
-        <footer>
-            <p>&copy; 2026 EduCare School. All rights reserved.</p>
-            <p>Empowering Minds, Building Futures</p>
-        </footer>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home">
+            <h2>Welcome to EduCare School</h2>
+            <p class="welcome-message">
+                Excellence in Education, Growth in Character.<br>
+                Join us on a journey of learning and discovery!
+            </p>
+            <button class="welcome-btn" onclick="showWelcomeMessage()">Click Here to Begin</button>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Our School</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        EduCare School is dedicated to providing quality education and fostering the development of young minds. 
+                        With a team of experienced educators and modern facilities, we strive to create an environment where 
+                        every student can thrive academically and personally.
+                    </p>
+                    <p>
+                        Our mission is to empower students with knowledge, skills, and values that will prepare them for 
+                        success in the 21st century. We believe in a holistic approach to education that balances academics 
+                        with extracurricular activities and personal growth.
+                    </p>
+                </div>
+                <div class="about-image">📚</div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <h2>Our Courses</h2>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <h3>📖 Mathematics</h3>
+                    <p>
+                        Master fundamental and advanced mathematical concepts including algebra, geometry, and calculus. 
+                        Our expert instructors make complex problems simple and engaging.
+                    </p>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <h3>🔬 Science</h3>
+                    <p>
+                        Explore the wonders of biology, chemistry, and physics. Through interactive experiments and hands-on 
+                        learning, discover how the world works around you.
+                    </p>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <h3>🌍 History & Geography</h3>
+                    <p>
+                        Journey through time and across the globe. Learn about different cultures, civilizations, and 
+                        geographical features that shape our world.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form class="contact-form" onsubmit="submitForm(event)">
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    <span class="error-message" id="nameError"></span>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <!-- Message Field -->
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" placeholder="Enter your message here..." required></textarea>
+                    <span class="error-message" id="messageError"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
     </div>
 
-    <!-- Internal JavaScript with GSAP -->
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 EduCare School. All rights reserved. | Dedicated to Excellence in Education</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        /* ===== COLOR DEFINITIONS FOR SCROLL ANIMATION ===== */
-        // Color palette: Orange, Green, Blue, Red, and other shades
-        const colorPalette = [
-            { start: '#ff6b35', end: '#ff9500' },      // Orange
-            { start: '#ff9500', end: '#ffc107' },      // Gold
-            { start: '#ffc107', end: '#4caf50' },      // Green
-            { start: '#4caf50', end: '#2196f3' },      // Blue
-            { start: '#2196f3', end: '#1a237e' },      // Deep Blue
-            { start: '#1a237e', end: '#c62828' },      // Red
-            { start: '#c62828', end: '#6a1b9a' },      // Purple
-            { start: '#6a1b9a', end: '#ff6b35' }       // Back to Orange
-        ];
-
-        /* ===== SCROLL-BASED COLOR GRADIENT UPDATE ===== */
-        window.addEventListener('scroll', () => {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            const colorIndex = Math.floor((scrollPercent / 100) * colorPalette.length) % colorPalette.length;
-            
-            document.querySelectorAll('.color-column').forEach((column, index) => {
-                const currentColor = colorPalette[colorIndex];
-                const nextColor = colorPalette[(colorIndex + 1) % colorPalette.length];
-                
-                const gradient = `linear-gradient(180deg, ${currentColor.start} 0%, ${currentColor.end} 50%, ${nextColor.start} 100%)`;
-                column.style.background = gradient;
-            });
-        });
-
-        /* ===== GSAP ANIMATED CURSOR - WATER DROP EFFECT ===== */
-        const cursor = document.getElementById('cursor');
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-        let velocityX = 0;
-        let velocityY = 0;
-        let lastX = 0;
-        let lastY = 0;
-
-        // Track mouse movement
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            velocityX = mouseX - lastX;
-            velocityY = mouseY - lastY;
-            lastX = mouseX;
-            lastY = mouseY;
-            
-            createCursorTrail(mouseX, mouseY);
-        });
-
-        // Smooth cursor following with liquid deformation
-        gsap.to({}, 0.016, {
-            repeat: -1,
-            onUpdate: function() {
-                cursorX += (mouseX - cursorX) * 0.2;
-                cursorY += (mouseY - cursorY) * 0.2;
-                
-                // Water drop deformation based on velocity
-                const speedFactor = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
-                const deformationX = 1 + speedFactor * 0.15;
-                const deformationY = 1 - speedFactor * 0.1;
-                
-                gsap.set(cursor, {
-                    x: cursorX,
-                    y: cursorY,
-                    scaleX: deformationX,
-                    scaleY: deformationY
-                });
-            }
-        });
-
-        /* ===== CREATE CURSOR TRAIL ===== */
-        function createCursorTrail(x, y) {
-            if (Math.random() > 0.8) {
-                const trail = document.createElement('div');
-                trail.classList.add('cursor-trail');
-                
-                const size = 8;
-                gsap.set(trail, {
-                    x: x,
-                    y: y,
-                    width: size,
-                    height: size,
-                    opacity: 0.7
-                });
-                
-                document.body.appendChild(trail);
-                
-                gsap.to(trail, {
-                    duration: 0.8,
-                    opacity: 0,
-                    y: y + 20,
-                    scale: 0.5,
-                    onComplete: () => {
-                        trail.remove();
-                    }
-                });
-            }
-        }
-
-        /* ===== CURSOR INTERACTION WITH ELEMENTS ===== */
-        const clickableElements = document.querySelectorAll('button, a, input, textarea');
-        
-        clickableElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-                gsap.to(cursor, {
-                    duration: 0.3,
-                    scale: 1.5
-                });
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-                gsap.to(cursor, {
-                    duration: 0.3,
-                    scale: 1
-                });
-            });
-        });
-
-        /* ===== CLICK ANIMATION ===== */
-        document.addEventListener('mousedown', () => {
-            gsap.to(cursor, {
-                duration: 0.2,
-                scale: 0.8
-            });
-        });
-
-        document.addEventListener('mouseup', () => {
-            gsap.to(cursor, {
-                duration: 0.2,
-                scale: 1
-            });
-        });
-
-        /* ===== SCROLL-TRIGGERED SECTION ANIMATIONS ===== */
-        gsap.utils.toArray('section').forEach((section) => {
-            gsap.from(section, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    markers: false
-                },
-                duration: 1,
-                opacity: 0,
-                y: 50,
-                ease: 'power3.out'
-            });
-
-            const h2 = section.querySelector('h2');
-            if (h2) {
-                gsap.from(h2, {
-                    scrollTrigger: {
-                        trigger: h2,
-                        start: 'top 85%',
-                        markers: false
-                    },
-                    duration: 1.2,
-                    opacity: 0,
-                    x: -30,
-                    ease: 'power2.out'
-                });
-            }
-        });
-
-        /* ===== SHOW WELCOME MESSAGE ===== */
+        // ===== WELCOME MESSAGE FUNCTION =====
+        // This function displays a welcome message when the button is clicked
         function showWelcomeMessage() {
-            alert("🎓 Welcome to EduCare School!\n\nWe're excited to have you here. Explore our courses and discover a world of learning opportunities!");
+            alert('Welcome to EduCare School! 🎓\n\nWe are excited to have you here. Our goal is to provide the best educational experience for all our students. Feel free to explore our courses and get in touch with us!');
         }
 
-        /* ===== FORM VALIDATION ===== */
-        function validateForm(event) {
+        // ===== FORM VALIDATION FUNCTION =====
+        // This function validates the contact form before submission
+        function submitForm(event) {
+            // Prevent the form from actually submitting to a server
             event.preventDefault();
 
+            // Get form input values
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
 
-            clearErrorMessages();
+            // Clear previous error messages
+            document.getElementById('nameError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('messageError').innerText = '';
 
+            // Flag to track if form is valid
             let isValid = true;
 
+            // Check if Name field is empty
             if (name === '') {
-                showError('nameError', 'Please enter your name');
-                isValid = false;
-            } else if (name.length < 3) {
-                showError('nameError', 'Name must be at least 3 characters long');
+                document.getElementById('nameError').innerText = '❌ Name is required!';
                 isValid = false;
             }
 
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            // Check if Email field is empty
             if (email === '') {
-                showError('emailError', 'Please enter your email address');
+                document.getElementById('emailError').innerText = '❌ Email is required!';
                 isValid = false;
-            } else if (!emailPattern.test(email)) {
-                showError('emailError', 'Please enter a valid email address');
+            } else if (!isValidEmail(email)) {
+                // Check if Email format is valid
+                document.getElementById('emailError').innerText = '❌ Please enter a valid email address!';
                 isValid = false;
             }
 
+            // Check if Message field is empty
             if (message === '') {
-                showError('messageError', 'Please enter your message');
-                isValid = false;
-            } else if (message.length < 10) {
-                showError('messageError', 'Message must be at least 10 characters long');
+                document.getElementById('messageError').innerText = '❌ Message is required!';
                 isValid = false;
             }
 
+            // If all validations pass, show success message
             if (isValid) {
-                alert('✅ Thank you for reaching out!\n\nYour message has been sent successfully.\nWe will get back to you soon.');
-                document.getElementById('contactForm').reset();
+                alert('✅ Thank you, ' + name + '!\n\nYour message has been received. We will get back to you soon!');
+                
+                // Clear the form fields after successful submission
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
             }
         }
 
-        function showError(errorElementId, errorMessage) {
-            const errorElement = document.getElementById(errorElementId);
-            errorElement.textContent = errorMessage;
-            const formGroup = errorElement.parentElement;
-            formGroup.classList.add('error');
+        // ===== EMAIL VALIDATION HELPER FUNCTION =====
+        // This function checks if an email address has a valid format
+        function isValidEmail(email) {
+            // Regular expression pattern to validate email format
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
         }
-
-        function clearErrorMessages() {
-            const errorMessages = document.querySelectorAll('.error-message');
-            const errorGroups = document.querySelectorAll('.form-group.error');
-
-            errorMessages.forEach(error => {
-                error.textContent = '';
-            });
-
-            errorGroups.forEach(group => {
-                group.classList.remove('error');
-            });
-        }
-
-        /* ===== SMOOTH SCROLLING ===== */
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (event) {
-                event.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        document.getElementById('name').addEventListener('input', clearErrorMessages);
-        document.getElementById('email').addEventListener('input', clearErrorMessages);
-        document.getElementById('message').addEventListener('input', clearErrorMessages);
     </script>
 </body>
 </html>

@@ -3,446 +3,642 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduCare School - Quality Education for All</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>EduCare School - Premium Education Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Internal CSS Styling - Material Design 3 -->
     <style>
-        /* ===== CSS Variables - Material Design 3 Color System ===== */
-        :root {
-            /* Primary Colors */
-            --md-primary: #6750a4;
-            --md-primary-container: #eaddff;
-            --md-primary-light: #7d5ba8;
-            --md-primary-dark: #533978;
-            
-            /* Secondary Colors */
-            --md-secondary: #625b71;
-            --md-secondary-container: #e8def8;
-            
-            /* Tertiary Colors */
-            --md-tertiary: #7d5260;
-            --md-tertiary-container: #ffd8e4;
-            
-            /* Surface Colors */
-            --md-surface: #fffbfe;
-            --md-surface-dim: #f3eff4;
-            --md-surface-bright: #fffbfe;
-            --md-surface-container-lowest: #ffffff;
-            --md-surface-container-low: #f9f6fb;
-            --md-surface-container: #f3eff4;
-            --md-surface-container-high: #ede9ee;
-            --md-surface-container-highest: #e8e5e9;
-            
-            /* Error Colors */
-            --md-error: #b3261e;
-            --md-error-container: #f9dedc;
-            
-            /* Success Colors */
-            --md-success: #4caf50;
-            --md-success-container: #c8e6c9;
-            
-            /* Text Colors */
-            --md-on-primary: #ffffff;
-            --md-on-secondary: #ffffff;
-            --md-on-surface: #1c1b1f;
-            --md-on-surface-variant: #49454e;
-            
-            /* Elevation */
-            --md-elevation-0: none;
-            --md-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-            --md-elevation-2: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-            --md-elevation-3: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
-            --md-elevation-4: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
-            --md-elevation-5: 0 20px 25px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.02);
-            
-            /* Border Radius */
-            --md-shape-corner-none: 0;
-            --md-shape-corner-xs: 4px;
-            --md-shape-corner-sm: 8px;
-            --md-shape-corner-md: 12px;
-            --md-shape-corner-lg: 16px;
-            --md-shape-corner-xl: 28px;
-            
-            /* Transitions */
-            --md-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            --md-transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-            --md-transition-slow: 350ms cubic-bezier(0.2, 0, 0.1, 1);
-        }
-
-        /* ===== Reset and General Styles ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #2596be;
+            --primary-dark: #1a6b8f;
+            --primary-light: #3ba5d1;
+            --accent: #ff006e;
+            --accent-light: #ffa3d2;
+            --dark: #0a0e27;
+            --darker: #050810;
+            --surface: #1a1f3a;
+            --surface-light: #2d3561;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b5c8;
+            --neon: #00f5ff;
+            --purple: #8b5cf6;
+            --success: #10b981;
+        }
+
         html {
             scroll-behavior: smooth;
+            cursor: none;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--md-on-surface);
-            background-color: var(--md-surface);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, #1a1f3a 50%, #0f1428 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* ===== Header and Navigation ===== */
-        header {
-            background: var(--md-surface-container-high);
-            color: var(--md-on-surface);
-            padding: 1rem 0;
-            position: sticky;
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
             top: 0;
-            box-shadow: var(--md-elevation-2);
-            z-index: 100;
-            border-bottom: 1px solid var(--md-surface-container-highest);
+            left: 0;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .cursor::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor.hover {
+            border-color: var(--accent);
+            background: rgba(255, 0, 110, 0.1);
+        }
+
+        .cursor.hover::before {
+            background: var(--accent);
+        }
+
+        /* Background Animation */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--purple);
+            border-radius: 70% 30% 66% 34% / 67% 33% 67% 33%;
+        }
+
+        .blob-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            border-radius: 33% 67% 85% 15% / 15% 85% 25% 75%;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(5, 8, 16, 0.5);
+            border-bottom: 1px solid rgba(37, 150, 190, 0.1);
         }
 
-        .school-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--md-primary);
-            letter-spacing: 0.3px;
-            transition: color var(--md-transition-fast);
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
         }
 
-        .school-name:hover {
-            color: var(--md-primary-light);
-        }
-
-        /* ===== Navigation Menu ===== */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+            gap: 3rem;
         }
 
         nav a {
-            color: var(--md-on-surface);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.75rem 1rem;
-            border-radius: var(--md-shape-corner-md);
-            transition: all var(--md-transition-normal);
             position: relative;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
 
-        nav a::before {
+        nav a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: -5px;
+            left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--md-primary);
-            transition: all var(--md-transition-normal);
-            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            background-color: var(--md-primary-container);
-            color: var(--md-primary);
+            color: var(--primary);
         }
 
-        nav a:hover::before {
-            width: calc(100% - 2rem);
+        nav a:hover::after {
+            width: 100%;
         }
 
-        /* ===== Main Container ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* ===== Sections ===== */
-        section {
-            margin: 2.5rem 0;
-            padding: 2.5rem;
-            background: var(--md-surface);
-            border-radius: var(--md-shape-corner-lg);
-            box-shadow: var(--md-elevation-1);
-            border: 1px solid var(--md-surface-container-high);
-            transition: all var(--md-transition-normal);
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        section:hover {
-            box-shadow: var(--md-elevation-2);
-        }
-
-        section h2 {
-            color: var(--md-primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* ===== Home Section (Banner) ===== */
-        #home {
-            background: linear-gradient(135deg, var(--md-primary) 0%, var(--md-tertiary) 100%);
-            color: white;
-            text-align: center;
-            min-height: 500px;
-            display: flex;
+        .toggle-menu {
+            display: none;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: var(--md-elevation-3);
-            border: none;
-        }
-
-        #home h2 {
-            color: white;
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .welcome-message {
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-            max-width: 600px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== Button Styles - Material Design 3 ===== */
-        .welcome-btn {
-            background-color: var(--md-primary-container);
-            color: var(--md-primary);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: var(--md-shape-corner-md);
+            gap: 6px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all var(--md-transition-normal);
-            margin-top: 1.5rem;
-            box-shadow: var(--md-elevation-1);
+        }
+
+        .toggle-menu span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
         }
 
-        .welcome-btn::before {
+        .hero-content {
+            flex: 1;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width var(--md-transition-normal), height var(--md-transition-normal);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: -1;
+            transition: left 0.3s ease;
         }
 
-        .welcome-btn:hover {
-            background-color: var(--md-primary);
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
             color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--md-elevation-3);
+            box-shadow: 0 0 20px rgba(37, 150, 190, 0.5);
         }
 
-        .welcome-btn:hover::before {
-            width: 300px;
-            height: 300px;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-color: transparent;
+            color: white;
         }
 
-        .welcome-btn:active {
-            transform: translateY(0);
-            box-shadow: var(--md-elevation-1);
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(37, 150, 190, 0.7);
         }
 
-        /* ===== About Section ===== */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            line-height: 1.8;
-            color: var(--md-on-surface-variant);
-            font-weight: 400;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, var(--md-primary-container) 0%, var(--md-secondary-container) 100%);
-            height: 350px;
-            border-radius: var(--md-shape-corner-lg);
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--md-primary);
-            font-size: 5rem;
-            box-shadow: var(--md-elevation-2);
-            transition: all var(--md-transition-normal);
         }
 
-        .about-image:hover {
-            transform: scale(1.02) rotateY(5deg);
-            box-shadow: var(--md-elevation-4);
+        .floating-card {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            background: rgba(37, 150, 190, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 8px 32px rgba(37, 150, 190, 0.2);
         }
 
-        /* ===== Courses Section ===== */
+        .floating-card:nth-child(1) {
+            top: 0;
+            right: 0;
+        }
+
+        .floating-card:nth-child(2) {
+            bottom: 0;
+            left: 50px;
+        }
+
+        .floating-card:nth-child(3) {
+            top: 50%;
+            right: 150px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .feature-card {
+            background: rgba(45, 53, 97, 0.5);
+            border: 1px solid rgba(37, 150, 190, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37, 150, 190, 0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            top: 50%;
+            left: 50%;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            background: rgba(37, 150, 190, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 1.5rem;
         }
 
         .course-card {
-            background: var(--md-surface-container-low);
-            border: 1px solid var(--md-surface-container-high);
-            color: var(--md-on-surface);
-            padding: 2rem;
-            border-radius: var(--md-shape-corner-lg);
-            transition: all var(--md-transition-normal);
-            box-shadow: var(--md-elevation-1);
             position: relative;
+            height: 400px;
+            border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
+            group: "course";
+        }
+
+        .course-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--surface-light), rgba(37, 150, 190, 0.1));
+            border: 1px solid rgba(37, 150, 190, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .course-card:hover .course-card-inner {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--surface-light), rgba(37, 150, 190, 0.2));
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 150, 190, 0.2);
         }
 
         .course-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--md-primary), var(--md-tertiary));
-            transition: left var(--md-transition-normal);
-        }
-
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--md-elevation-4);
-            border-color: var(--md-primary-container);
-            background: var(--md-primary-container);
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 150, 190, 0.5), rgba(139, 92, 246, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            border-radius: 20px;
         }
 
         .course-card:hover::before {
-            left: 0;
+            opacity: 1;
+        }
+
+        .course-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .course-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--md-primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
 
         .course-card p {
-            font-size: 0.95rem;
+            color: var(--text-secondary);
             line-height: 1.6;
-            color: var(--md-on-surface-variant);
+            flex-grow: 1;
         }
 
-        /* ===== Contact Section ===== */
+        .course-btn {
+            align-self: flex-start;
+            padding: 0.7rem 1.5rem;
+            background: rgba(37, 150, 190, 0.2);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .course-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .about-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+        }
+
+        .about-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 0;
+            right: 0;
+            background: rgba(37, 150, 190, 0.1);
+        }
+
+        .about-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            bottom: 50px;
+            left: 100px;
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--purple);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 0;
+            background: rgba(45, 53, 97, 0.3);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 6rem 0;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 2rem;
-            animation: slideUp 0.6s ease-out backwards;
+            position: relative;
         }
 
-        .form-group:nth-child(1) { animation-delay: 0.1s; }
-        .form-group:nth-child(2) { animation-delay: 0.2s; }
-        .form-group:nth-child(3) { animation-delay: 0.3s; }
-        .form-group:nth-child(4) { animation-delay: 0.4s; }
-
-        label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-            color: var(--md-primary);
-            font-size: 0.95rem;
-            transition: color var(--md-transition-fast);
-        }
-
-        input, textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid var(--md-surface-container-high);
-            border-radius: var(--md-shape-corner-md);
+            background: rgba(10, 14, 39, 0.5);
+            border: 2px solid rgba(37, 150, 190, 0.3);
+            border-radius: 15px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
             font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
-            transition: all var(--md-transition-normal);
-            background-color: var(--md-surface-container-low);
-            color: var(--md-on-surface);
+            transition: all 0.3s ease;
         }
 
-        input::placeholder, textarea::placeholder {
-            color: var(--md-on-surface-variant);
-            opacity: 0.7;
-        }
-
-        input:focus, textarea:focus {
+        .form-group input:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: var(--md-primary);
-            background-color: var(--md-surface);
-            box-shadow: 0 0 0 4px var(--md-primary-container);
+            border-color: var(--primary);
+            background: rgba(37, 150, 190, 0.1);
+            box-shadow: 0 0 20px rgba(37, 150, 190, 0.2);
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label {
+            top: -10px;
+            left: 1rem;
+            background: var(--darker);
+            padding: 0 0.5rem;
+            color: var(--primary);
+            font-size: 0.85rem;
         }
 
         textarea {
@@ -450,377 +646,393 @@
             min-height: 120px;
         }
 
-        /* ===== Submit Button ===== */
-        .submit-btn {
-            background: linear-gradient(135deg, var(--md-primary) 0%, var(--md-tertiary) 100%);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: var(--md-shape-corner-md);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all var(--md-transition-normal);
+        .form-submit {
             width: 100%;
-            box-shadow: var(--md-elevation-2);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
         }
 
-        .submit-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width var(--md-transition-normal), height var(--md-transition-normal);
-        }
-
-        .submit-btn:hover {
+        .form-submit:hover {
+            box-shadow: 0 10px 30px rgba(37, 150, 190, 0.5);
             transform: translateY(-2px);
-            box-shadow: var(--md-elevation-4);
         }
 
-        .submit-btn:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-            box-shadow: var(--md-elevation-1);
-        }
-
-        /* ===== Footer ===== */
+        /* Footer */
         footer {
-            background: var(--md-surface-container-high);
-            color: var(--md-on-surface);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(37, 150, 190, 0.1);
             text-align: center;
-            padding: 2.5rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--md-surface-container-highest);
+            color: var(--text-secondary);
         }
 
-        footer p {
-            font-size: 0.9rem;
-            color: var(--md-on-surface-variant);
-        }
-
-        /* ===== Error and Success Messages ===== */
-        .error-message {
-            color: var(--md-error);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            animation: shake 0.3s ease-in-out;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .success-message {
-            color: var(--md-success);
-            font-weight: 600;
-            padding: 1rem;
-            background-color: var(--md-success-container);
-            border-radius: var(--md-shape-corner-md);
-            margin-bottom: 1rem;
-            animation: slideDown 0.4s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== Responsive Design ===== */
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+            .hero {
+                flex-direction: column;
+                min-height: auto;
+                padding: 2rem 0;
             }
 
-            section {
-                padding: 1.5rem;
-                margin: 1.5rem 0;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            .header-container {
-                padding: 0 1rem;
-                justify-content: center;
+            .hero-visual {
+                height: 300px;
             }
 
             nav ul {
-                width: 100%;
-                justify-content: center;
+                display: none;
             }
 
-            .about-content {
+            .toggle-menu {
+                display: flex;
+            }
+
+            .about-section {
                 grid-template-columns: 1fr;
             }
 
-            .school-name {
-                font-size: 1.3rem;
+            .section-title {
+                font-size: 2rem;
             }
 
-            #home {
-                min-height: 350px;
-            }
-
-            #home h2 {
-                font-size: 1.8rem;
-            }
-
-            .welcome-message {
-                font-size: 1rem;
-            }
-
-            .courses-grid {
-                grid-template-columns: 1fr;
+            .contact-section {
+                padding: 2rem;
             }
         }
 
-        /* ===== Accessibility ===== */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(37, 150, 190, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(37, 150, 190, 0.6); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .glowing {
+            animation: glow 2s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="blob blob-1" style="top: 10%; left: 10%;"></div>
+        <div class="blob blob-2" style="bottom: 20%; right: 15%;"></div>
+        <div class="blob blob-3" style="top: 50%; left: 50%;"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
     <header>
-        <div class="header-container">
-            <a href="#home" class="school-name">🎓 EduCare School</a>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#courses">Courses</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+        <div class="logo">EDU<span style="color: var(--accent);">CARE</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="toggle-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Hero Section -->
     <div class="container">
-        <!-- Home Section -->
-        <section id="home">
-            <h2>Welcome to EduCare School</h2>
-            <p class="welcome-message">
-                Excellence in Education, Growth in Character.<br>
-                Join us on a journey of learning and discovery!
-            </p>
-            <button class="welcome-btn" onclick="showWelcomeMessage()">Click Here to Begin</button>
-        </section>
-
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Our School</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        EduCare School is dedicated to providing quality education and fostering the development of young minds. 
-                        With a team of experienced educators and modern facilities, we strive to create an environment where 
-                        every student can thrive academically and personally.
-                    </p>
-                    <p>
-                        Our mission is to empower students with knowledge, skills, and values that will prepare them for 
-                        success in the 21st century. We believe in a holistic approach to education that balances academics 
-                        with extracurricular activities and personal growth.
-                    </p>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Welcome to <span class="gradient-text">EduCare</span><br>Premium Education</h1>
+                <p>Transform your learning journey with our cutting-edge educational platform. Experience excellence, innovation, and personalized growth.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn">Learn More</button>
                 </div>
-                <div class="about-image">📚</div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card" style="animation: float 4s ease-in-out infinite;">
+                    <div class="card-icon">🎓</div>
+                    <div class="card-text">Expert Teachers</div>
+                </div>
+                <div class="floating-card" style="animation: float 5s ease-in-out infinite 0.5s;">
+                    <div class="card-icon">🚀</div>
+                    <div class="card-text">Innovation First</div>
+                </div>
+                <div class="floating-card" style="animation: float 6s ease-in-out infinite 1s;">
+                    <div class="card-icon">💎</div>
+                    <div class="card-text">Premium Quality</div>
+                </div>
             </div>
         </section>
+    </div>
 
-        <!-- Courses Section -->
-        <section id="courses">
-            <h2>Our Courses</h2>
+    <!-- Features Section -->
+    <div class="container">
+        <section class="features" id="features">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Rich Content</h3>
+                <p>Access comprehensive learning materials curated by industry experts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalized Path</h3>
+                <p>Learning adapted to your pace and style with AI-powered recommendations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Community</h3>
+                <p>Connect with learners worldwide and collaborate on exciting projects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Real-time Feedback</h3>
+                <p>Get instant insights and guidance to accelerate your learning progress.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Courses Section -->
+    <div class="container">
+        <section class="courses-section" id="courses">
+            <h2 class="section-title">Our <span style="color: var(--primary);">Courses</span></h2>
+            <p class="section-subtitle">Explore our premium collection of structured learning programs</p>
+            
             <div class="courses-grid">
-                <!-- Course 1 -->
                 <div class="course-card">
-                    <h3>📖 Mathematics</h3>
-                    <p>
-                        Master fundamental and advanced mathematical concepts including algebra, geometry, and calculus. 
-                        Our expert instructors make complex problems simple and engaging.
-                    </p>
+                    <div class="course-card-inner">
+                        <div>
+                            <div class="course-emoji">📖</div>
+                            <h3>Mathematics</h3>
+                            <p>Master algebra, geometry, calculus and advanced problem-solving techniques with expert instructors.</p>
+                        </div>
+                        <button class="course-btn">Explore</button>
+                    </div>
                 </div>
 
-                <!-- Course 2 -->
                 <div class="course-card">
-                    <h3>🔬 Science</h3>
-                    <p>
-                        Explore the wonders of biology, chemistry, and physics. Through interactive experiments and hands-on 
-                        learning, discover how the world works around you.
-                    </p>
+                    <div class="course-card-inner">
+                        <div>
+                            <div class="course-emoji">🔬</div>
+                            <h3>Science</h3>
+                            <p>Dive into biology, chemistry, and physics through interactive experiments and hands-on learning.</p>
+                        </div>
+                        <button class="course-btn">Explore</button>
+                    </div>
                 </div>
 
-                <!-- Course 3 -->
                 <div class="course-card">
-                    <h3>🌍 History & Geography</h3>
-                    <p>
-                        Journey through time and across the globe. Learn about different cultures, civilizations, and 
-                        geographical features that shape our world.
-                    </p>
+                    <div class="course-card-inner">
+                        <div>
+                            <div class="course-emoji">🌍</div>
+                            <h3>History & Geography</h3>
+                            <p>Journey through civilizations and explore the geographical features that shape our world.</p>
+                        </div>
+                        <button class="course-btn">Explore</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-card-inner">
+                        <div>
+                            <div class="course-emoji">💻</div>
+                            <h3>Technology</h3>
+                            <p>Learn programming, web development, and digital innovation for the modern world.</p>
+                        </div>
+                        <button class="course-btn">Explore</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-card-inner">
+                        <div>
+                            <div class="course-emoji">🎨</div>
+                            <h3>Arts & Design</h3>
+                            <p>Develop creative skills with courses in visual arts, graphic design, and digital creativity.</p>
+                        </div>
+                        <button class="course-btn">Explore</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-card-inner">
+                        <div>
+                            <div class="course-emoji">🗣️</div>
+                            <h3>Languages</h3>
+                            <p>Master communication skills across multiple languages with native-speaking instructors.</p>
+                        </div>
+                        <button class="course-btn">Explore</button>
+                    </div>
                 </div>
             </div>
         </section>
+    </div>
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <form class="contact-form" onsubmit="submitForm(event)">
-                <!-- Name Field -->
+    <!-- About Section -->
+    <div class="container">
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <h2>Why Choose <span style="color: var(--primary);">EduCare?</span></h2>
+                <p>EduCare represents the next generation of education, combining traditional pedagogical excellence with cutting-edge technology to create an unparalleled learning experience.</p>
+                <p>Our platform is designed by educators, for learners. We understand the unique challenges of modern education and have built solutions that make learning more accessible, engaging, and effective.</p>
+                <button class="btn btn-primary">Join Today</button>
+            </div>
+            <div class="about-visual">
+                <div class="about-circle" style="animation: float 4s ease-in-out infinite;"></div>
+                <div class="about-circle" style="animation: float 5s ease-in-out infinite 0.5s;"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="container">
+        <section class="contact-section" id="contact">
+            <h2>Get in Touch</h2>
+            <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            
+            <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                    <span class="error-message" id="nameError"></span>
+                    <input type="text" placeholder=" " id="name" required>
+                    <label for="name">Full Name</label>
                 </div>
-
-                <!-- Email Field -->
                 <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                    <span class="error-message" id="emailError"></span>
+                    <input type="email" placeholder=" " id="email" required>
+                    <label for="email">Email Address</label>
                 </div>
-
-                <!-- Message Field -->
                 <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" placeholder="Enter your message here..." required></textarea>
-                    <span class="error-message" id="messageError"></span>
+                    <textarea placeholder=" " id="message" required></textarea>
+                    <label for="message">Message</label>
                 </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="form-submit">Send Message</button>
             </form>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 EduCare School. All rights reserved. | Dedicated to Excellence in Education</p>
+        <p>&copy; 2024 EduCare School. All rights reserved. | Crafted with 💜 for Excellence</p>
     </footer>
 
-    <!-- JavaScript for Interactivity -->
     <script>
-        // ===== WELCOME MESSAGE FUNCTION =====
-        function showWelcomeMessage() {
-            alert('Welcome to EduCare School! 🎓\n\nWe are excited to have you here. Our goal is to provide the best educational experience for all our students. Feel free to explore our courses and contact us for more information!');
-        }
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        const trails = [];
+        let mouseX = 0;
+        let mouseY = 0;
 
-        // ===== FORM VALIDATION FUNCTION =====
-        function submitForm(event) {
-            event.preventDefault();
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = (mouseX - 15) + 'px';
+            cursor.style.top = (mouseY - 15) + 'px';
 
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
+            // Create trail effect
+            if (Math.random() > 0.8) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = mouseX + 'px';
+                trail.style.top = mouseY + 'px';
+                document.body.appendChild(trail);
 
-            // Clear previous error messages
-            document.getElementById('nameError').classList.remove('show');
-            document.getElementById('emailError').classList.remove('show');
-            document.getElementById('messageError').classList.remove('show');
+                setTimeout(() => {
+                    trail.style.opacity = '0';
+                    trail.style.transform = 'scale(0)';
+                    trail.style.transition = 'all 0.6s ease-out';
+                }, 10);
 
-            document.getElementById('nameError').innerText = '';
-            document.getElementById('emailError').innerText = '';
-            document.getElementById('messageError').innerText = '';
-
-            let isValid = true;
-
-            // Validation checks
-            if (name === '') {
-                document.getElementById('nameError').innerText = '❌ Name is required!';
-                document.getElementById('nameError').classList.add('show');
-                isValid = false;
+                setTimeout(() => trail.remove(), 600);
             }
+        });
 
-            if (email === '') {
-                document.getElementById('emailError').innerText = '❌ Email is required!';
-                document.getElementById('emailError').classList.add('show');
-                isValid = false;
-            } else if (!isValidEmail(email)) {
-                document.getElementById('emailError').innerText = '❌ Please enter a valid email address!';
-                document.getElementById('emailError').classList.add('show');
-                isValid = false;
-            }
+        // Cursor hover effects
+        document.querySelectorAll('a, button, .course-card, .feature-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
 
-            if (message === '') {
-                document.getElementById('messageError').innerText = '❌ Message is required!';
-                document.getElementById('messageError').classList.add('show');
-                isValid = false;
-            }
-
-            if (isValid) {
-                alert('✅ Thank you, ' + name + '!\n\nYour message has been received. We will get back to you soon!');
-                
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            }
-        }
-
-        // ===== EMAIL VALIDATION HELPER FUNCTION =====
-        function isValidEmail(email) {
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailPattern.test(email);
-        }
-
-        // ===== ADD SMOOTH SCROLL TO SECTIONS =====
+        // Smooth scroll navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Thank you ${name}! Your message has been sent successfully. We'll get back to you soon!`);
+            e.target.reset();
+        }
+
+        // Blob animation
+        const blobs = document.querySelectorAll('.blob');
+        blobs.forEach((blob, index) => {
+            blob.style.animation = `float ${3 + index}s ease-in-out infinite`;
+        });
+
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.animation = 'slideInUp 0.6s ease-out';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
+        document.querySelectorAll('.feature-card, .course-card').forEach(el => {
+            observer.observe(el);
         });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
